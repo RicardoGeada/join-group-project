@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/respon_header_template.css">
+    <link rel="stylesheet" href="./css/respon_footer_template.css">
+    <link rel="stylesheet" href="./css/addtask.css">
+    <link rel="stylesheet" href="./css/addtask_media_query.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/components_library.css">
+    <link rel="stylesheet" href="./css/popup_newcontact.css">
+    <link rel="shortcut icon" href="assets/img/join_favicon.png" type="image/x-icon">
+    <script src="./js/storage.js"></script>
+    <script src="./js/loggedinuser.js"></script>
+    <script src="./js/add_task_create_task.js"></script>
+    <script src="./js/add_task_render_template.js"></script>
+    <script src="./js/add_task_toggle_edit_check.js"></script>
+    <script src="./js/popup_newcontact.js"></script>
+    <script src="./js/script.js"></script>
+    <title>JOIN - Add Task</title>
+</head>
+
+<body onload="initAddTask()">
+    <div class="insert-top" w3-include-html="./assets/template/respon_header_template.html">
+    </div>
+    <section class="mainAddTask scrollbar" w3-include-html="./assets/template/add_task_template.html" onclick="closeAssignedToDropDown(), closeCategoryDropDown(), closeSubTaskInput()">
+    </section>
+    <!-- CONTACT POPUP -->
+    <div w3-include-html="./assets/template/popup_newcontact.html"></div>
+    <div class="insert-bottom" w3-include-html="./assets/template/respon_footer_template.html">
+    </div>
+    <!-- MSG BOX -->
+    <div id="msgbox" class="msgbox">
+        <h3>Information</h3>
+        <p id="msgbox-text">To edit please register and log in.</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+  </head>
+
+  <!--Bootstrap files-->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"
+  ></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/contacts.js"></script>
+  <script src="js/startscreen.js"></script>
+  <script src="js/login.js"></script>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/startscreen.css" />
+  <link
+    rel="shortcut icon"
+    href="assets/img/join_favicon.png"
+    type="image/x-icon"
+  />
+
+  <body>
+    <div id="colorOverlay"></div>
+    <div class="logo-container">
+      <picture>
+        <source
+          srcset="assets/img/Desktop_Logo.svg"
+          media="(min-width: 1000px)"
+        />
+        <img
+          id="logo"
+          class="logo-animation"
+          src="assets/img/mobile-start-animation-white.svg"
+          alt="Animated Logo White"
+        />
+      </picture>
+    </div>
+
+    <form
+      class="login-container bc-white"
+      id="loginContainer"
+      onsubmit="event.preventDefault();"
+    >
+      <h2 class="mb-4 size-61px">Log in</h2>
+      <!-- Email input -->
+      <div class="elementbox input-desktop input-se border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field"
+              type="email"
+              id="emailLogin"
+              placeholder="Email"
+              autocomplete="current-email"
+              required
+            />
+            <div class="input-imgbox">
+              <img src="./assets/img/mail.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password input -->
+      <div class="elementbox input-desktop input-se border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field"
+              type="password"
+              id="passwordLogin"
+              placeholder="Password"
+              onfocus="setVisibilityOff('passwordLogin', 'toggleVisibility')"
+              autocomplete="current-password"
+              required
+            />
+            <div class="input-imgbox">
+              <img
+                id="toggleVisibility"
+                onclick="togglePasswordVisibility('passwordLogin', 'toggleVisibility')"
+                src="./assets/img/lock.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-box d-flex">
+        <div class="change-box col-auto text-center">
+          <!-- Checkbox -->
+          <div class="col-auto forgot-password">
+            <a href="forgot_password.html">Forgot my password</a>
+          </div>
+          <div class="custom-checkbox-container">
+            <input
+              class="custom-checkbox-input"
+              type="checkbox"
+              id="rememberBox"
+            />
+            <label class="custom-checkbox-label" for="rememberBox"></label>
+            <label class="remember-me-label" for="rememberBox"
+              >Remember me</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="login-buttons d-flex flex-column justify-content-between mt-2"
+      >
+        <button
+          onclick="login()"
+          type="button"
+          id="logInBtn"
+          class="btn btn-primary mb-4 login-site"
+        >
+          Log in
+        </button>
+        <button
+          type="button"
+          id="guestLogIn"
+          class="btn btn-primary login-site"
+          onclick="guestLogin()"
+        >
+          Guest Log in
+        </button>
+      </div>
+    </form>
+
+    <div class="sign-up-area">
+      <p>Not a Join user?</p>
+      <button
+        type="button"
+        class="sign-up-button btn btn-primary mr-4 mb-4"
+        onclick="openSignUpInNewWindow()"
+      >
+        Sign up
+      </button>
+    </div>
+
+    <div id="errorReport" class="custom-report">
+      <div class="report-content">
+        Falsche E-Mail-Adresse oder Passwort. Bitte versuchen Sie es erneut.
+        <button class="close-button" onclick="closeWrongLogin()">
+          Schließen
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
+      <a href="legal_notice.html" target="_blank">Legal notice</a>
+    </footer>
+  </body>
+</html>

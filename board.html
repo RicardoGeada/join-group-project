@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN - Board</title>
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="./css/components_library.css">
+    <link rel="stylesheet" href="./css/respon_header_template.css">
+    <link rel="stylesheet" href="./css/respon_footer_template.css">
+    <link rel="stylesheet" href="./css/addtask.css">
+    <link rel="stylesheet" href="./css/addtask_media_query.css">
+    <link rel="stylesheet" href="./css/popup_newcontact.css">
+    <link rel="shortcut icon" href="assets/img/join_favicon.png" type="image/x-icon">
+    <script src="./js/storage.js"></script>
+    <script src="./js/loggedinuser.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/board_html_templates.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/board_edit_task.js"></script>
+    <script src="./js/drag_and_drop.js"></script>
+    <script src="./js/add_task_create_task.js"></script>
+    <script src="./js/add_task_render_template.js"></script>
+    <script src="./js/add_task_toggle_edit_check.js"></script>
+    <script src="./js/popup_newcontact.js"></script>
+</head>
+<body onload="initBoard()">
+    <div class="insert-top" w3-include-html="./assets/template/respon_header_template.html">
+    </div>
+    <div class="insert-bottom" w3-include-html="./assets/template/respon_footer_template.html">
+    </div>
+    <div class="board-content">
+        <div class="board-main-container">
+            <div id="board-header" class="board-header">
+            </div>
+            <div class="board-body">
+                <!-- TO DO -->
+                <section id="section-to-do" class="task-section" ondrop="moveTo('to-do')" ondragover="allowDrop(event)">
+                    <div class="task-section-header">
+                        <h3>To do</h3>
+                        <button class="btn-add-task-outlined fl-jcc-aic" onclick="openAddNewTaskPopUp('to-do')">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16.5 9.1416L1.5 9.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>    
+                        </button>
+                    </div>
+                    <div id="section-to-do-tasks-container" class="task-section-body" >
+                    </div>
+                </section>
+                <!-- In Progress -->
+                <section id="section-in-progress" class="task-section" ondrop="moveTo('in-progress')" ondragover="allowDrop(event)">
+                    <div class="task-section-header">
+                        <h3>In progress</h3>
+                        <button class="btn-add-task-outlined fl-jcc-aic" onclick="openAddNewTaskPopUp('in-progress')">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16.5 9.1416L1.5 9.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>    
+                        </button>
+                    </div>
+                    <div id="section-in-progress-tasks-container" class="task-section-body">
+                    </div>
+                </section>
+                <!-- Await Feedback -->
+                <section id="section-await-feedback" class="task-section" ondrop="moveTo('await-feedback')" ondragover="allowDrop(event)">
+                    <div class="task-section-header">
+                        <h3>Await feedback</h3>
+                        <button class="btn-add-task-outlined fl-jcc-aic" onclick="openAddNewTaskPopUp('await-feedback')">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 1.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M16.5 9.1416L1.5 9.1416" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                            </svg>    
+                        </button>
+                    </div>
+                    <div id="section-await-feedback-tasks-container" class="task-section-body">
+                    </div>
+                </section>
+                <!-- Done -->
+                <section id="section-done" class="task-section" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                    <div class="task-section-header">
+                        <h3>Done</h3>
+                    </div>
+                    <div id="section-done-tasks-container" class="task-section-body">
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- TASK POPUP -->
+        <div id="popup-container" class="popup-container" style="display: none;" onclick="closePopup()">
+        </div>
+        <!-- ADD TASK POPUP -->
+        <div id="popup-container-add-task" class="popup-container" style="display: none;" onclick="closeAddTaskPopup()">
+            <div class="popup-add-task-container" w3-include-html="./assets/template/add_task_template.html" onclick="stopPropagation(event),closeAssignedToDropDown(), closeCategoryDropDown(), closeSubTaskInput(), toggleFocus()"></div>
+        </div>
+        <!-- CONTACT POPUP -->
+        <div w3-include-html="./assets/template/popup_newcontact.html"></div>
+    </div>
+    <!-- MSG BOX -->
+    <div id="msgbox" class="msgbox">
+        <h3>Information</h3>
+        <p id="msgbox-text">To edit please register and log in.</p>
+    </div>
+</body>
+</html>

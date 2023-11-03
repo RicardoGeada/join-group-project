@@ -1,0 +1,233 @@
+:root {
+    --col-main: #2a3647;
+    --col-white: #ffffff;
+    --col-black: #000000;
+    --col-usr-hover: #e1e6ec;
+    --col-btn-activ: #29abe2;
+    --col-shadow10: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    --col-light-grey: #cdcdcd;
+}
+
+button {
+    font-family: Inter, sans-serif;
+}
+
+.insert-top div,
+.insert-top nav,
+.insert-top main,
+.insert-top span,
+.insert-top ::after {
+    box-sizing: border-box;
+    transition: all 100ms ease-in;
+}
+
+/* ################################################################ */
+/* ### Ab hier CSS für den Header */
+/* ################################################################ */
+.insert-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    height: 80px;
+    max-width: 100%;
+    width: 100%;
+    background: var(--col-white);
+    box-shadow: var(--col-shadow10);
+    transition-property: max-width, height;
+    transition-delay: 125ms, 0ms;
+    transition-duration: 100ms, 100ms;
+}
+
+.header {
+    height: 80px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    margin-left: 116px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    display: none;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-header a {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-icon {
+    background-color: var(--col-white);
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    border: 2px solid var(--col-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user-icon:hover {
+    background-color: var(--col-usr-hover);
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--col-btn-activ);
+}
+
+.useroptions {
+    z-index: 9;
+    position: fixed;
+    top: 80px;
+    right: -200px;
+    padding: 10px;
+    border-radius: 20px;
+    border-top-right-radius: 0;
+    background-color: var(--col-main);
+    box-shadow: var(--col-shadow10);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.useroptions:not(.inview) {
+    right: -200px;
+    transition: right 100ms ease-in-out;
+}
+
+.useroptions.inview {
+    right: 16px;
+    transition: right 100ms ease-in-out;
+}
+
+.useroptions-link {
+    text-decoration: none;
+    color: var(--col-light-grey);
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--col-main);
+}
+
+.useroptions-link:hover {
+    color: var(--col-white);
+}
+
+
+.msgbox {
+    z-index: 99999;
+    position: fixed;
+    top: calc(100% + 10px);
+    left: calc(50% - (326px / 2));
+    width: 326px;
+    height: fit-content;
+    padding: 16px 0;
+    background-color: var(--col-main);
+    border: 2px solid var(--col-light-grey);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.msgbox.shortpopup {
+    top: calc(50%);
+    transition: top 100ms ease-in;
+}
+
+.msgbox:not(.shortpopup) {
+    transition: top 100ms ease-out;
+}
+
+.msgbox h3, .msgbox p {
+    color: var(--col-white);
+}
+
+/* ------------------------------------------------------------ */
+
+
+@media (min-width: 1000px) {
+    .insert-top {
+        left: auto;
+        right: 0;
+        max-width: calc(100% - 232px);
+        width: 100%;
+        height: 96px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition-property: max-width, height;
+        transition-delay: 125ms, 0ms;
+        transition-duration: 100ms, 100ms;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    #headerimg {
+        display: none;
+    }
+
+    .header-title {
+        display: block;
+    }
+
+    .user-header {
+        gap: 24px;
+    }
+
+    .user-header a {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-header a img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .user-name {
+        font-size: 20px;
+    }
+
+    .user-icon {
+        width: 56px;
+        height: 56px;
+        border: 3px solid var(--col-black);
+    }
+}
+
+
+
+@media (min-width: 1000px) and (max-width: 1199px) {
+    .header-title {
+        margin-left: 86px;
+    }
+}
+
+.d-none {
+    display: none;
+}

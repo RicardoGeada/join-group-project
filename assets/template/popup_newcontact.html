@@ -1,0 +1,68 @@
+    <!-- Popup - Add contact -->
+    <div id="popup-addcon" class="popup-addcon-main" onclick="clearAddPopup()">
+        <div class="popup-addcon-background" onclick="stopPropagation(event)">
+            <div class="popup-top-bg">
+                <div class="popup-top-titlebox">
+                    <div class="popup-top-textbox">
+                        <div class="desktop-popup-logo">
+                            <div class="join-popup-logo">
+                                <img src="./assets/img/desktop_popup_mainlogo.png">
+                            </div>
+                        </div>
+                        <div class="popup-top-text">
+                            <span class="popup-top-titletext">
+                                Add contact
+                            </span>
+                            <span class="popup-top-secondtext">
+                                Tasks are better with a team!
+                            </span>
+                        </div>
+                        <div class="after90"></div>
+                    </div>
+                </div>
+                <div class="popup-person-imgbox">
+                    <img src="./assets/img/person64.png">
+                </div>
+            </div>
+            <div class="popup-addcon-inputbox">
+                <form class="popup-addcon-inputbox-form" onsubmit="saveNewContact(); return false;" autocomplete="off">
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="text" id="addconname" required pattern="[A-Za-zäöüÄÖÜ]+(?: [A-Za-zäöüÄÖÜ\-]+)+" title="First and last name please." placeholder="Name">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/person16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="email" id="addconemail" required pattern="[a-zA-Z0-9\.!%_\+\-]{1,64}[@][a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}" title="Valid email address please." placeholder="Email">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/mail_20x16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="tel" id="addconphone" required pattern="(\+|00)( \d){5,20}" title="International-Format: + or 00 and at least 5 digits after the + or 00, no spaces." placeholder="Phone">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/call18.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-addcon-btn">
+                        <button class="btn dark">Create contact<div><img src="./assets/img/check.png"></div></button>
+                    </div>
+                </form>
+            </div>
+            <div class="close-x" onclick="clearAddPopup()">
+                <img src="./assets/img/close.png">
+            </div>
+        </div>
+    </div>
+    <!-- Popup - success -->
+    <div id="contactsuccess" class="contactsuccess">
+        <span>Contact successfully created</span>
+    </div>

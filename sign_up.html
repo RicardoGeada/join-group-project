@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+  </head>
+
+  <!--Bootstrap files-->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/startscreen.css" />
+  <link rel="stylesheet" href="css/sign_up.css" />
+  <link
+    rel="shortcut icon"
+    href="assets/img/join_favicon.png"
+    type="image/x-icon"
+  />
+  <script src="js/storage.js"></script>
+  <script src="js/contacts.js"></script>
+  <script src="js/sign_up.js"></script>
+
+  <body>
+    <div id="confirmationMessage"></div>
+
+    <div class="logo-position">
+      <img
+        id="signUpLogo"
+        src="assets/img/mobile-start-animation-black.svg"
+        alt="Logo Black"
+      />
+    </div>
+
+    <div class="arrow-back icon-button" onclick="backToLogin()">
+      <img src="./assets/img/arrow_left.png" />
+    </div>
+
+    <form class="signUp-container" id="signUpContainer">
+      <h2 class="mb-5 size-61px">Sign Up</h2>
+      <!-- Name input -->
+      <div class="elementbox border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field sign-up-field"
+              type="text"
+              id="nameField"
+              placeholder="Name"
+              required
+              pattern=".{2,}"
+              oninvalid="this.setCustomValidity('Bitte geben Sie einen gültigen Namen ein.')"
+              oninput="this.setCustomValidity('')"
+            />
+            <div class="input-imgbox">
+              <img src="./assets/img/person16.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email input -->
+      <div class="elementbox border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field sign-up-field"
+              type="email"
+              id="emailField"
+              placeholder="Email"
+              required
+              autocomplete="email"
+              onblur="checkEmailExists();"
+            />
+            <div class="input-imgbox">
+              <img src="./assets/img/mail.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="elementbox border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field sign-up-field"
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+              autocomplete="password"
+              onclick="showPasswordRequirements(); setVisibilityOff('password', 'passwordImg')"
+              onblur="if(this.value.trim()) { validatePasswordRequirements(); checkPasswordsMatch(); }"
+            />
+
+            <div
+              class="input-imgbox"
+              onclick="togglePasswordVisibility('password', 'passwordImg')"
+            >
+              <img id="passwordImg" src="./assets/img/lock.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="passwordInfo" style="display: none">
+        Your password must meet the following criteria:
+        <ul>
+          <li>At least 8 characters</li>
+          <li>At least one number</li>
+          <li>At least one uppercase letter</li>
+          <li>At least one lowercase letter</li>
+          <li>At least one special character (e.g. !@#$%^&*)</li>
+        </ul>
+      </div>
+
+      <!-- Password Confirm input -->
+      <div class="elementbox border-none bc-white">
+        <div class="input-border">
+          <div class="input-innerbox">
+            <input
+              class="input-field sign-up-field"
+              type="password"
+              id="passwordConf"
+              placeholder="Password Confirm"
+              required
+              autocomplete="password"
+              onclick="setVisibilityOff('passwordConf', 'passwordConfImg')"
+              onblur="checkPasswordsMatch()"
+            />
+            <div
+              class="input-imgbox"
+              onclick="togglePasswordVisibility('passwordConf', 'passwordConfImg')"
+            >
+              <img id="passwordConfImg" src="./assets/img/lock.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accept-privacy-box">
+        <div class="row text-center">
+          <!-- Checkbox -->
+
+          <div class="custom-checkbox-container mb-2">
+            <input
+              class="custom-checkbox-input"
+              type="checkbox"
+              id="PrivacyCheckBox"
+              required
+            />
+            <label class="custom-checkbox-label" for="PrivacyCheckBox"></label>
+            <label class="accept-privacy" for="PrivacyCheckBox"
+              >I accept the
+              <a href="privacy_policy.html">Privacy policy</a></label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="login-buttons d-flex flex-column justify-content-between mt-4"
+      >
+        <button
+          onclick="registerUser();"
+          type="button"
+          id="signUpBtn"
+          class="btn btn-primary mb-3 login-site"
+        >
+          Sign Up
+        </button>
+      </div>
+    </form>
+    <div id="errorPassword" class="custom-report">
+      <div class="report-content">
+        Passwords do not match. Please try again.
+        <button class="close-button" onclick="closeWrongPassword()">
+          close
+        </button>
+      </div>
+    </div>
+
+    <div id="errorEmailExists" class="custom-report">
+      <div class="report-content">
+        Email already exists. Please try with another email.
+        <button class="close-button" onclick="closeEmailExist()">close</button>
+      </div>
+    </div>
+    <div id="invalidEmailPopup" class="custom-report">
+      <div class="report-content">
+        There's a spelling error in your email.
+        <button class="close-button" onclick="closeInvalidEmailPopup()">
+          close
+        </button>
+      </div>
+    </div>
+    <div id="successRegistration" class="custom-report">
+      <div class="report-content border">
+        "Thank you for your registration!<br />
+        You will be redirected to the login screen in
+        <span id="countdown">3</span> seconds."
+      </div>
+    </div>
+    <div id="errorPrivacy" class="custom-report">
+      <div class="report-content">
+        Please confirm the privacy policy.
+        <button class="close-button" onclick="closePrivacyAlert()">
+          close
+        </button>
+      </div>
+    </div>
+    <div id="passwordNotSecure" class="custom-report">
+      <div class="report-content">
+        Your password does not meet the minimum requirements. Please enter a
+        stronger password
+        <button class="close-button" onclick="closePasswordNotSecurePopup()">
+          close
+        </button>
+      </div>
+    </div>
+    <footer>
+      <a href="privacy_policy.html">Privacy Policy</a>
+      <a href="legal_notice.html">Legal notice</a>
+    </footer>
+  </body>
+</html>

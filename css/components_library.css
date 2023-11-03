@@ -1,0 +1,275 @@
+/* ---- COLORS ---- */
+:root {
+  --color-blue: #2AABE2;
+  --color-dark-blue: #2A3647;
+  --color-darker-blue: #091931;
+  --color-white: #FFFFFF;
+  --color-darker-white: #F6F7F8;
+  --color-lightest-grey: #E7E7E7;
+  --color-lighter-grey: #D1D1D1;
+  --color-light-grey: #CDCDCD;
+  --color-grey: #A8A8A8;
+  --col-hr: #d1d1d1;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Background Colors */
+.bc-0 {
+  background-color: #ff7a00;
+}
+
+.bc-1 {
+  background-color: #ff5eb3;
+}
+
+.bc-2 {
+  background-color: #6e52ff;
+}
+
+.bc-3 {
+  background-color: #9327ff;
+}
+
+.bc-4 {
+  background-color: #00bee8;
+}
+
+.bc-5 {
+  background-color: #1fd7c1;
+}
+
+.bc-6 {
+  background-color: #ff745e;
+}
+
+.bc-7 {
+  background-color: #ffa35e;
+}
+
+.bc-8 {
+  background-color: #fc71ff;
+}
+
+.bc-9 {
+  background-color: #ffc701;
+}
+
+.bc-10 {
+  background-color: #0038ff;
+}
+
+.bc-11 {
+  background-color: #c3ff2b;
+}
+
+.bc-12 {
+  background-color: #ffe62b;
+}
+
+.bc-13 {
+  background-color: #ff4646;
+}
+
+.bc-14 {
+  background-color: #ffbb2b;
+}
+
+
+
+/* Profile Badge */
+.profile-badge {
+  width: 30px;
+  min-width: 30px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--color-white);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  font-size: 12px;
+}
+
+
+
+/* ---- BUTTONS ---- */
+
+button {
+    background-color: transparent;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+}
+
+/* Button Filled */
+.btn-filled {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 4px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.btn-filled:hover {
+  background-color: var(--color-blue);
+}
+
+.btn-filled:active {
+  background-color: var(--color-darker-blue);
+}
+
+/* Button Outlined */
+.btn-outlined {
+  background-color: transparent;
+  color: var(--color-dark-blue);
+  border: 1px solid var(--color-dark-blue);
+  padding: 4px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.btn-outlined:hover {
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
+}
+
+.btn-outlined:active {
+  color: var(--color-darker-blue);
+  border: 1px solid var(--color-darker-blue);
+}
+
+/* Button Big */
+.btn-big {
+  padding: 18px 10px;
+  border-radius: 10px;
+}
+
+
+/* Add Task Button Outlined */
+.btn-add-task-outlined {
+    width: 30px;
+    aspect-ratio: 1 /1;
+    border: 2px solid var(--color-dark-blue);
+    border-radius: 10px;
+}
+
+.btn-add-task-outlined svg {
+    width: 15px;
+    height: 15px;
+}
+
+.btn-add-task-outlined:hover,
+.btn-add-task-outlined:hover svg path {
+    border-color: var(--color-blue);
+    stroke: var(--color-blue);
+}
+
+/* Add Task Button Filled */
+.btn-add-task-filled {
+    width: 30px;
+    aspect-ratio: 1 /1;
+    background-color: var(--color-dark-blue);
+    border-radius: 10px;
+}
+
+.btn-add-task-filled svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-add-task-filled:hover {
+    background-color: var(--color-blue);
+}
+
+.btn-add-task-filled:active {
+    background-color: var(--color-darker-blue);
+}
+
+
+/* Input Field Styling */
+
+.input-field-container,
+.select-field-container {
+    height: 40px;
+    width: 100%;
+    border: 1px solid var(--color-lighter-grey);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 21px;
+}
+
+.textarea-field-container {
+    min-height: 88px;
+    width: 100%;
+    border: 1px solid var(--color-lighter-grey);
+    border-radius: 10px;
+    display: flex;
+    align-items: start;
+    padding: 18px 21px;
+}
+
+.input-field-container:focus-within,
+.select-field-container:focus-within,
+.textarea-field-container:focus-within {
+    border: 1px solid var(--color-blue);
+}
+
+.input-field-container input,
+.select-field-container select
+ {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}
+
+.textarea-field-container textarea {
+    border: none;
+    outline: none;
+    min-width: 100%;
+    min-height: 56px;
+    resize: vertical;
+    font-size: 16px;
+}
+
+
+/* USEFULL STYLING CLASSES */
+
+.fl-jcc-aic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gap-4 {
+    gap: 4px;
+  }
+
+  .gap-10 {
+    gap: 10px;
+  }
+
+  .gap-16 {
+    gap: 16px;
+  }
+
+  .font-21px-700 {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .square-24px {
+    width: 24px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .width-30px {
+    width: 30px;
+  }
+
+  .width-40px {
+    min-width: 40px;
+  }

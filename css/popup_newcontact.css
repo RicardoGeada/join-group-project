@@ -1,0 +1,405 @@
+/* ------------------------------------------------------------ */
+/* ----- for all popups --------------------------------------- */
+/* ------------------------------------------------------------ */
+.popup-top-bg {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* height: 352px; */
+    /* height: fit-content; */
+    padding: 66px 24px;
+    background-color: var(--col-main);
+    border-radius: 30px 30px 0 0;
+}
+
+.popup-top-titlebox {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.popup-top-textbox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.desktop-popup-logo {
+    display: none;
+}
+
+.after90 {
+    position: relative;
+    height: 16px;
+}
+
+.after90::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    height: 3px;
+    width: 90px;
+    background-color: var(--col-btn-activ);
+    border: none;
+}
+
+.popup-top-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.popup-top-titletext {
+    color: var(--col-white);
+    font-size: clamp(32px, 11.7vw, 47px);
+    font-weight: 700;
+    line-height: 56.4px;
+}
+
+.popup-top-secondtext {
+    color: var(--col-white);
+    font-size: clamp(12px, 5vw, 20px);
+    font-weight: 400;
+    line-height: 24px;
+}
+
+/* ------------------------------------------------------------ */
+.popup-person-imgbox {
+    position: absolute;
+    bottom: -60px;
+    left: calc(50% - 60px);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--col-hr);
+    border: 3px solid var(--col-white);
+    border-radius: 500px;
+    box-shadow: 0 0 4px 0 var(--col-shadow10);
+}
+
+.popup-person-imgbox-text {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    color: var(--col-white);
+}
+
+/* ------------------------------------------------------------ */
+.close-x {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border-radius: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-x:hover {
+    background-color: var(--col-btn-activ);
+}
+
+.contactsuccess {
+    z-index: 99999;
+    position: fixed;
+    top: calc(100% + 10px);
+    left: calc(50% - (326px / 2));
+    width: 326px;
+    height: 74px;
+    background-color: var(--col-main);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactsuccess span {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--col-white);
+}
+
+.contactsuccess.shortpopup {
+    top: calc(100% - 240px);
+    transition-delay: 400ms;
+    transition: top 100ms ease-in;
+}
+
+.contactsuccess:not(.shortpopup) {
+    transition: top 100ms ease-out;
+}
+
+/* ------------------------------------------------------------ */
+.popup-addcon-main input {
+    width: calc(100% - 24px);
+    height: 24px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.popup-addcon-main input::placeholder {
+    color: var(--col-hr);
+}
+
+.border:has(input:focus) {
+    border-color: var(--col-btn-activ);
+}
+
+/* ------------------------------------------------------------ */
+.btn-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.btn {
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 24px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.btn.dark {
+    background-color: var(--col-main);
+    color: var(--col-white);
+    padding: 16px;
+}
+
+.btn.light {
+    background-color: var(--col-white);
+    color: var(--col-black);
+    border: 1px solid var(--col-black);
+    padding: 15px 24px;
+}
+
+.btn div {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------------------------------------------------------------ */
+/* ----- for contact-add-popup -------------------------------- */
+/* ------------------------------------------------------------ */
+.popup-addcon-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: #00000040;
+    object-position: top center;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-addcon-background {
+    z-index: 999;
+    position: relative;
+    max-width: 500px;
+    max-height: 650px;
+    width: calc(100% - 32px);
+    height: calc(100% - 10%);
+    background-color: var(--col-white);
+    border-radius: 30px;
+    box-shadow: 0 0 4px 0 var(--col-shadow10);
+    transition: top 300ms;
+    transition: right 300ms;
+    right: -100%;
+}
+
+.popup-addcon-main.inview {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: all;
+}
+
+.popup-addcon-main.inview .popup-addcon-background {
+    right: 0; 
+}
+
+.popup-addcon-main:not(.inview) .popup.popup-addcon-background {
+    top: calc(100% + 10px);
+}
+
+.popup-addcon-main:not(.inview) {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* ------------------------------------------------------------ */
+.popup-addcon-inputbox {
+    position: relative;
+    flex: 1;
+    padding: 0 16px;
+}
+
+.popup-addcon-inputbox-form {
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-addcon-input-box {
+    padding: 8px 16px;
+    border: 1px solid var(--col-hr);
+    border-radius: 10px;
+    background-color: var(--col-white);
+}
+
+.popup-addcon-input-innerbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popup-addcon-input-imgbox {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-addcon-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* ------------------------------------------------------------ */
+/* ----- Media-Queries - Desktop-Ansicht ---------------------- */
+/* ------------------------------------------------------------ */
+@media (min-width: 1000px) {
+    .popup-addcon-main.inview .popup-addcon-background {
+        top: 0;
+    }
+    
+    .popup-addcon-background {
+        display: flex;
+        flex-direction: row;
+        max-height: 592px;
+        max-width: 1200px;
+    }
+
+    .popup-top-bg {
+        left: -1px;
+        border-radius: 30px 0 0 30px;
+        /* height: 100%; */
+        width: 470px;
+        padding: 66px 48px;
+    }
+
+    .popup-top-titlebox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .popup-top-textbox {
+        position: relative;
+    }
+
+    .desktop-popup-logo {
+        display: block;
+        position: absolute;
+        top: -78px;
+        left: 0;
+    }
+
+    .popup-top-text {
+        gap: 8px;
+    }
+
+    .popup-top-titletext {
+        font-size: 61px;
+        line-height: 120%;
+    }
+
+    .popup-top-secondtext {
+        font-size: 27px;
+        line-height: 120%;
+    }
+
+    .popup-person-imgbox {
+        left: auto;
+        right: -203px;
+        bottom: calc(57% - 60px);
+    }
+
+    .popup-addcon-inputbox {
+        width: calc(100% - 470px - 275px);
+        padding: 48px 48px 48px 275px;
+    }
+
+    .popup-addcon-inputbox-form {
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    .popup-addcon-input-box {
+        width: 100%;
+    }
+
+    /* ----- */
+    .close-x {
+        top: 48px;
+        right: 48px;
+    }
+
+    .close-x img {
+        content: url('../assets/img/close_dark.png');
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1199px) {
+    .popup-top-bg {
+        width: 370px;
+    }
+
+    .popup-top-titletext {
+        font-size: 45px;
+    }
+
+    .popup-top-secondtext {
+        font-size: 19px;
+    }
+
+    .popup-person-imgbox {
+        right: -163px;
+    }
+
+    .popup-addcon-inputbox {
+        padding: 48px 48px 48px 205px;
+    }
+}

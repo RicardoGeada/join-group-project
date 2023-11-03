@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/respon_header_template.css">
+    <link rel="stylesheet" href="./css/respon_footer_template.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="shortcut icon" href="assets/img/join_favicon.png" type="image/x-icon">
+    <script src="./js/script.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/loggedinuser.js"></script>
+    <script src="./js/contacts.js"></script>
+    <title>Join - Contacts</title>
+</head>
+<body tabindex=0>
+    <div class="insert-top" w3-include-html="./assets/template/respon_header_template.html">
+    </div>
+    <div class="insert-bottom" w3-include-html="./assets/template/respon_footer_template.html">
+    </div>
+    <!-- Contact list-view -->
+    <div class="contact-list-main">
+        <div class="contact-add-main" onclick="openAddCon()">
+            <div class="contact-add-mainbox">
+                <span>Add new contact</span>
+                <img src="./assets/img/person_add.png" class="contact-add-img">
+            </div>
+        </div>
+        <div id="contact-list" class="contact-list">
+            <!--  -->
+            <div class="contact-list-endbox"></div>
+        </div>
+    </div>
+    <!-- Desktop single-standard -->
+    <div id="contact-desktop-title" class="contact-desktop-title-main">
+        <div class="contact-single-title-box">
+            <div class="contact-single-title-text">
+                <span class="contact-single-title-text-main">Contacts</span>
+                <span class="contact-single-title-text-second">Better with a team</span>
+            </div>
+        </div>
+    </div>
+    <!-- Contact single-view -->
+    <div id="contact-single" class="contact-single-main d-none">
+        <div id="backarrow" class="backarrow" onclick="closeContact()">
+            <img src="./assets/img/arrow_left.png">
+        </div>
+        <div class="contact-single-title-box">
+            <div class="contact-single-title-text">
+                <span class="contact-single-title-text-main">Contacts</span>
+                <span class="contact-single-title-text-second">Better with a team</span>
+            </div>
+        </div>
+        <div class="contact-single-info-box">
+            <div class="contact-single-info-top">
+                <div class="contact-single-info-badge">
+                    <div id="contact-single-info-badge-circle" class="contact-single-info-badge-circle"></div>
+                    <span id="contact-single-info-badge-text" class="contact-single-info-badge-text">AM</span>
+                </div>
+                <div class="contact-single-info-name">
+                    <span id="contact-single-info-name-text" class="contact-single-info-name-text">Anton Mayer</span>
+                    <div id="contact-single-info-options" class="contact-single-info-options"></div>
+                </div>
+            </div>
+            <div class="contact-single-info-sencond">
+                <span>Contact Information</span>
+            </div>
+            <div class="contact-single-info-details">
+                <div class="contact-single-info-details-box">
+                    <span class="contact-details-title">Email</span>
+                    <span id="contact-single-info-email-text" class="contact-details-text email">antom@gmail.com</span>
+                </div>
+                <div class="contact-single-info-details-box">
+                    <span class="contact-details-title">Phone</span>
+                    <span id="contact-single-info-phone-text" class="contact-details-text">+49 1111 111 11 1</span>
+                </div>
+            </div>
+        </div>
+        <div id="contact-btn-option-box" class="contact-btn-option-box">
+            <div class="contact-btn-option">
+                <img src="./assets/img/more_vert.png">
+            </div>
+            <div id="options" class="options">
+                <div class="options-row" onclick="openEditCon()">
+                    <div class="options-imgbox">
+                        <img class="options-img" src="./assets/img/edit.png">
+                    </div>
+                    <span>Edit</span>
+                </div>
+                <div class="options-row" onclick="deleteContact()">
+                    <div class="options-imgbox">
+                        <img class="options-img" src="./assets/img/delete.png">
+                    </div>
+                    <span>Delete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup - Add contact -->
+    <div id="popup-addcon" class="popup-addcon-main">
+        <div class="popup-addcon-background">
+            <div class="popup-top-bg">
+                <div class="popup-top-titlebox">
+                    <div class="popup-top-textbox">
+                        <div class="desktop-popup-logo">
+                            <div class="join-popup-logo">
+                                <img src="./assets/img/desktop_popup_mainlogo.png">
+                            </div>
+                        </div>
+                        <div class="popup-top-text">
+                            <span class="popup-top-titletext">
+                                Add contact
+                            </span>
+                            <span class="popup-top-secondtext">
+                                Tasks are better with a team!
+                            </span>
+                        </div>
+                        <div class="after90"></div>
+                    </div>
+                </div>
+                <div class="popup-person-imgbox">
+                    <img src="./assets/img/person64.png">
+                </div>
+            </div>
+            <div class="popup-addcon-inputbox">
+                <form class="popup-addcon-inputbox-form" onsubmit="saveNewContact(); return false;" autocomplete="off">
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="text" id="addconname" required pattern="[A-Za-zäöüÄÖÜ]+(?: [A-Za-zäöüÄÖÜ\-]+)+" title="First and last name please." placeholder="Name">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/person16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="email" id="addconemail" required pattern="[a-zA-Z0-9\.!%_\+\-]{1,64}[@][a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}" title="Valid email address please." placeholder="Email">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/mail_20x16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-addcon-input-box border">
+                        <div class="popup-addcon-input-innerbox">
+                            <input type="tel" id="addconphone" required pattern="(\+|00)( \d){5,20}" title="International-Format: + or 00 and at least 5 digits after the + or 00, no spaces." placeholder="Phone">
+                            <div class="popup-addcon-input-imgbox">
+                                <img src="./assets/img/call18.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-addcon-btn">
+                        <button class="btn dark">Create contact<div><img src="./assets/img/check.png"></div></button>
+                    </div>
+                </form>
+            </div>
+            <div class="close-x" onclick="clearAddPopup()">
+                <img src="./assets/img/close.png">
+            </div>
+        </div>
+    </div>
+    <!-- Popup - success -->
+    <div id="contactsuccess" class="contactsuccess">
+        <span>Contact successfully created</span>
+    </div>
+    <!-- Popup - Edit contact -->
+    <div id="popup-editcon" class="popup-editcon-main">
+        <div class="popup-editcon-background">
+            <div class="popup-top-bg">
+                <div class="popup-top-titlebox">
+                    <div class="popup-top-textbox">
+                        <div class="desktop-popup-logo">
+                            <div class="join-popup-logo">
+                                <img src="./assets/img/desktop_popup_mainlogo.png">
+                            </div>
+                        </div>
+                        <div class="popup-top-text">
+                            <span class="popup-top-titletext">
+                                Edit contact
+                            </span>
+                        </div>
+                        <div class="after90"></div>
+                    </div>
+                </div>
+                <div id="popup-person-imgbox" class="popup-person-imgbox">
+                    <span id="popup-person-imgbox-text" class="popup-person-imgbox-text">AM</span>
+                </div>
+            </div>
+            <div class="popup-editcon-inputbox">
+                <form class="popup-editcon-inputbox-form" onsubmit="saveEditContact(); return false;" autocomplete="off">
+                    <div class="popup-editcon-input-box border">
+                        <div class="popup-editcon-input-innerbox">
+                            <input type="hidden" id="editconid" value="">
+                            <input type="text" id="editconname" required pattern="[A-Za-z]+(?: [A-Za-z\-]+)+" title="First and last name please." placeholder="Name">
+                            <div class="popup-editcon-input-imgbox">
+                                <img src="./assets/img/person16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-editcon-input-box border">
+                        <div class="popup-editcon-input-innerbox">
+                            <input type="email" id="editconemail" required pattern="[a-zA-Z0-9\.!%_\+\-]{1,64}[@][a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}" title="Valid email address please" placeholder="Email">
+                            <div class="popup-editcon-input-imgbox">
+                                <img src="./assets/img/mail_20x16.png">
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="popup-editcon-input-box border">
+                        <div class="popup-editcon-input-innerbox">
+                            <input type="tel" id="editconphone" required pattern="(\+|00)\d{5,20}" title="International-Format: +49... or 0049... and at least 5 digits after the + or 00" placeholder="Phone">
+                            <div class="popup-editcon-input-imgbox">
+                                <img src="./assets/img/call18.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-row">
+                        <div id="popup-editcon-btn-delete" class="popup-editcon-btn">
+                            <button type="button" class="btn light">Delete</button>
+                        </div>
+                        <div id="popup-editcon-btn-edit" class="popup-editcon-btn">
+                            <button type="submit" class="btn dark">Save<div><img src="./assets/img/check.png"></div></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="close-x" onclick="openEditCon()">
+                <img src="./assets/img/close.png">
+            </div>
+            <div id="raute"><button onclick="openMore()">#</button></div>
+        </div>
+    </div>
+    <!-- Popup - msgbox -->
+    <div id="msgbox" class="msgbox">
+        <h3>Information</h3>
+        <p id="msgbox-text">To edit please register and log in.</p>
+    </div>
+<!-- Page END -->
+</body>
+</html>

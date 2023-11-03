@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    --color-blue: #2AABE2;
+    --color-dark-blue: #2A3647;
+    --color-darker-blue: #091931;
+    --color-white: #FFFFFF;
+    --color-darker-white: #F6F7F8;
+    --color-lightest-grey: #E7E7E7;
+    --color-lighter-grey: #D1D1D1;
+    --color-light-grey: #CDCDCD;
+    --color-grey: #A8A8A8;
+    --col-hr: #d1d1d1;
+    font-family: 'Inter', sans-serif;
+}

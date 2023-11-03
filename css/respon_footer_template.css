@@ -1,0 +1,235 @@
+:root {
+	--col-main: #2a3647;
+	--col-main-active: #091931;
+	--col-main-hover: #2a3d59;
+	--col-btn-activ: #29abe2;
+	--col-light-grey: #cdcdcd;
+	--col-white: #ffffff;
+	--col-grey: #a8a8a8;
+}
+
+button {
+	font-family: Inter, sans-serif;
+}
+
+.insert-bottom div,
+.insert-bottom nav,
+.insert-bottom main,
+.insert-bottom span,
+.insert-bottom ::after {
+	box-sizing: border-box;
+	transition: all 75ms ease-in;
+}
+
+.insert-bottom span {
+	font-family: Inter, sans-serif;
+	font-size: 20px;
+	line-height: 24px;
+	text-overflow: ellipsis;
+}
+
+/* ################################################################ */
+/* ### Ab hier CSS für den Footer */
+/* ################################################################ */
+.insert-bottom {
+	position: absolute;
+	top: auto;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+	height: 80px;
+	width: 100%;
+	overflow: hidden;
+	background-color: var(--col-main);
+	transition-property: width, height;
+	transition-delay: 125ms, 0ms;
+	transition-duration: 100ms, 100ms;
+}
+
+.footer {
+	height: 80px;
+	padding: 2px 16px;
+	background-color: var(--col-main);
+}
+
+.nav-menu {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.nav-menu-link {
+	height: 100%;
+	width: 80px;
+	aspect-ratio: 1 / 1;
+	color: var(--col-light-grey);
+	font-family: Inter, sans-serif;
+	font-size: 14px;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+}
+
+.nav-menu-link span {
+	font-size: 14px;
+	color: var(--col-light-grey);
+	white-space: nowrap;
+}
+
+.link-selected {
+	background-color: var(--col-main-active);
+	border-radius: 8px;
+}
+
+.link-selected span {
+	color: var(--col-white);
+}
+
+.link-selected img {
+	filter: brightness(100);
+}
+
+.nav-menu-link:hover {
+	cursor: pointer;
+	background-color: var(--col-main-hover);
+	border-radius: 8px;
+}
+
+.nav-bottom-linkbox {
+	display: none;
+}
+
+@media (min-width: 1000px) {
+	.insert-bottom {
+		width: 232px;
+		bottom: 0;
+		right: auto;
+		height: 100%;
+		flex-direction: column;
+		transition-property: width, height, top;
+		transition-delay: 0ms, 125ms, 125ms;
+		transition-duration: 100ms, 100ms, 100ms;
+	}
+
+	.footer {
+		height: 100%;
+		padding: 64px 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-shrink: 0;
+	}
+
+	.desktop-join-logo {
+		width: 100%;
+		padding: 64px 0px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.nav-menu {
+		width: 100%;
+		height: fit-content;
+		padding: 0;
+		margin-top: 50px;
+		box-sizing: border-box;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 20px;
+	}
+
+	.nav-menu-link {
+		width: 100%;
+		height: 24px;
+		padding: 12px 0;
+		border-radius: 0;
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: 8px;
+	}
+
+	.nav-menu-link:hover {
+		border-radius: 0;
+	}
+
+	.nav-menu-link img {
+		width: 30px;
+		height: 30px;
+		margin-left: 50px;
+	}
+
+	.nav-menu-link span {
+		font-size: 16px;
+		line-height: 19.2px;
+	}
+
+	.nav-bottom-linkbox {
+		width: 100%;
+		padding: 243px 0 0 52px;
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.nav-bottom-link {
+		padding: 8px;
+		text-decoration: none;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 120%;
+		color: var(--col-grey);
+	}
+
+	.nav-bottom-link:hover {
+		color: var(--col-btn-activ);
+	}
+}
+
+@media (min-width: 1000px) and (max-height: 1000px) {
+	.nav-bottom-linkbox {
+		padding-top: clamp(24px, 10%, 243px);
+		margin-top: auto;
+	}
+}
+
+@media (min-width: 1000px) and (max-height: 800px) {
+	.footer {
+		padding: 0 0 16px 0;
+	}
+
+	.desktop-join-logo {
+		padding: 32px 0;
+	}
+
+	.nav-menu {
+		margin-top: 16px;
+	}
+	
+	.nav-bottom-linkbox {
+		padding-top: 24px;
+	}
+}
+
+@media (max-width: 999px) {
+	.desktop-join-logo {
+		display: none;
+	}
+}
+
+@media (max-width: 399px) {
+	.footer {
+		padding: 2px 2px;
+	}
+}
+
+.d-none {
+	display: none;
+}

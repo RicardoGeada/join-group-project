@@ -1,0 +1,148 @@
+<form action="" autocomplete="off" onsubmit="return false">
+    <div class="headAddTask">
+        <h1>Add Task</h1>
+        <button id="add-task-closing-button" class="icon-button d-none" onclick="closeAddTaskPopup()" type="button">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_81722_982" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24"
+                    height="24">
+                    <rect x="4" y="4" width="24" height="24" fill="#D9D9D9" />
+                </mask>
+                <g mask="url(#mask0_81722_982)">
+                    <path
+                        d="M15.9998 17.3998L11.0998 22.2998C10.9165 22.4831 10.6831 22.5748 10.3998 22.5748C10.1165 22.5748 9.88314 22.4831 9.6998 22.2998C9.51647 22.1165 9.4248 21.8831 9.4248 21.5998C9.4248 21.3165 9.51647 21.0831 9.6998 20.8998L14.5998 15.9998L9.6998 11.0998C9.51647 10.9165 9.4248 10.6831 9.4248 10.3998C9.4248 10.1165 9.51647 9.88314 9.6998 9.6998C9.88314 9.51647 10.1165 9.4248 10.3998 9.4248C10.6831 9.4248 10.9165 9.51647 11.0998 9.6998L15.9998 14.5998L20.8998 9.6998C21.0831 9.51647 21.3165 9.4248 21.5998 9.4248C21.8831 9.4248 22.1165 9.51647 22.2998 9.6998C22.4831 9.88314 22.5748 10.1165 22.5748 10.3998C22.5748 10.6831 22.4831 10.9165 22.2998 11.0998L17.3998 15.9998L22.2998 20.8998C22.4831 21.0831 22.5748 21.3165 22.5748 21.5998C22.5748 21.8831 22.4831 22.1165 22.2998 22.2998C22.1165 22.4831 21.8831 22.5748 21.5998 22.5748C21.3165 22.5748 21.0831 22.4831 20.8998 22.2998L15.9998 17.3998Z"
+                        fill="#2A3647" />
+                </g>
+                </svg>
+        </button>
+    </div>
+    <div class="taskData">
+        <div class="taskDataFields">
+            <div class="leftSite">
+                <div class="title h4-gap">
+                    <h4 class="title">Title<p style="color:#ff3d00">*</p>
+                    </h4>
+                    <input class="titleInput brd-r10 item" type="text" placeholder="Enter a title" id="titleInput"
+                        onclick="resetInputAlert('titleInput'), setFocus('titleInput'), closeSubTaskInput(), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('titleInput'), stopPropagation(event)" maxlength="50" autocomplete="off" required
+                        title="Please enter a title.">
+                </div>
+                <div class="description h4-gap">
+                    <h4>Description<p style="color:#ff3d00">*</p>
+                    </h4>
+                    <textarea class="descriptionInput brd-r10 item" name="" id="descriptionInput"
+                        placeholder="Enter a Description" onclick="resetInputAlert('descriptionInput'), setFocus('descriptionInput'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('descriptionInput'), stopPropagation(event)" required
+                        title="Please enter a description."></textarea>
+                </div>
+                <div class="assignedTo">
+                    <h4>Assigned to</h4>
+                    <div class="selectContacts">
+                        <div id="searchContact" class="categorySelector index brd-r10" onclick="showContacts(), closeCategoryDropDown(), closeSubTaskInput(), toggleFocus('searchContact'),stopPropagation(event)">
+                            <input type="text" class="brd-transparent width-100" name="" id="searchContactInput"
+                                placeholder="Select contacts to assign"
+                                onkeyup="searchContacts()">
+                            <img id="contactsArrow" class="item" src="./assets/img/arrow_drop_down.svg"
+                                onclick="showContacts()">
+                        </div>
+                    </div>
+                    <div>
+                        <div id="checkBoxes" class="contactSelectField brd-r10 d-none" onclick="stopPropagation(event)">
+                            <div class="contactSelectField-inner-container">
+                                <div id="contactDropDown"></div>
+                            <div class="addNewContact">
+                                <button type="button" class="addNewContactBtn brd-r10 item" onclick="openAddCon()">Add new contact
+                                    <img src="./assets/img/person_add.svg" alt=""></button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contactInitial" class="d-none"></div>
+                </div>
+            </div>
+            <div class="separator-border d-none">&nbsp;
+            </div>
+            <div class="rightSite">
+                <div class="rightSite">
+                    <div class="prio h4-gap">
+                        <h4>Prio<p style="color:#ff3d00">*</p>
+                        </h4>
+                        <div id="btnSection" class="btnSection width-396 brd-r10"
+                            onclick="resetPrioAlert('urgentBtn','mediumBtn','lowBtn')">
+                            <a id="urgentBtn" class="item brd-r10" onclick="selectPrio(1)">Urgent <img id="urgent"
+                                    src="./assets/img/capa2.svg" alt=""></a>
+                            <a id="mediumBtn" class="item brd-r10" onclick="selectPrio(2)">Medium <img id="medium"
+                                    src="./assets/img/prio-media.svg" alt=""></a>
+                            <a id="lowBtn" class="item brd-r10" onclick="selectPrio(3)">Low <img id="low"
+                                    src="./assets/img/prio-baja.svg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="h4-gap">
+                        <h4>Due date<p style="color:#ff3d00">*</p>
+                        </h4>
+                        <div class="input-add-task-due-date">
+                            <input onclick="today(); resetInputAlert('dateToday'), setFocus('dateToday'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('dateToday'), stopPropagation(event)" class="date item brd-r10" type="date"
+                                id="dateToday" required>
+                            <svg class="input-date-img" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <mask id="mask0_81758_1232" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                    y="0" width="24" height="24">
+                                    <rect width="24" height="24" fill="#D9D9D9"></rect>
+                                </mask>
+                                <g mask="url(#mask0_81758_1232)">
+                                    <path
+                                        d="M14.5 18C13.8 18 13.2083 17.7583 12.725 17.275C12.2417 16.7917 12 16.2 12 15.5C12 14.8 12.2417 14.2083 12.725 13.725C13.2083 13.2417 13.8 13 14.5 13C15.2 13 15.7917 13.2417 16.275 13.725C16.7583 14.2083 17 14.8 17 15.5C17 16.2 16.7583 16.7917 16.275 17.275C15.7917 17.7583 15.2 18 14.5 18ZM5 22C4.45 22 3.97917 21.8042 3.5875 21.4125C3.19583 21.0208 3 20.55 3 20V6C3 5.45 3.19583 4.97917 3.5875 4.5875C3.97917 4.19583 4.45 4 5 4H6V3C6 2.71667 6.09583 2.47917 6.2875 2.2875C6.47917 2.09583 6.71667 2 7 2C7.28333 2 7.52083 2.09583 7.7125 2.2875C7.90417 2.47917 8 2.71667 8 3V4H16V3C16 2.71667 16.0958 2.47917 16.2875 2.2875C16.4792 2.09583 16.7167 2 17 2C17.2833 2 17.5208 2.09583 17.7125 2.2875C17.9042 2.47917 18 2.71667 18 3V4H19C19.55 4 20.0208 4.19583 20.4125 4.5875C20.8042 4.97917 21 5.45 21 6V20C21 20.55 20.8042 21.0208 20.4125 21.4125C20.0208 21.8042 19.55 22 19 22H5ZM5 20H19V10H5V20ZM5 8H19V6H5V8Z"
+                                        fill="#2A3647"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="selectCategory h4-gap">
+                        <h4>Category<p style="color:#ff3d00">*</p>
+                        </h4>
+                        <div class="custom-select" onclick="stopPropagation(event)">
+                            <div class="categorySelect">
+                                <div id="categoryInput" class="categorySelector brd-r10 item"
+                                    onclick="selectCategory(); resetInputAlert('categoryInput'), setFocus('categoryInput'), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('categoryInput'), stopPropagation(event)">
+                                    <p id="chosenCategory">Select task Category</p>
+                                    <img id="categoryArrow" src="./assets/img/arrow_drop_down.svg" alt="">
+                                </div>
+                                <div id="allOptions" class="selector brd-r10 d-none">
+                                    <div class="option item brd-r10" onclick="selectOption(this)">Technical Task</div>
+                                    <div class="option item brd-r10" onclick="selectOption(this)">User Story</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subTasks h4-gap">
+                        <h4>Subtasks</h4>
+                        <div id="subTaskInputCover" class="item brd-r10" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), toggleFocus('subTaskInputCover'), stopPropagation(event), toggleSubTaskInput()">
+                            <p>Add new subtask</p>
+                            <img src="./assets/img/add.svg" alt="">
+                        </div>
+                        <div id="realSubInput" class="subTaskInput d-none">
+                            <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)">
+                            <div class="subInputButton">
+                                <img class="item" src="./assets/img/close.svg" onclick="toggleSubTaskInput()" alt="">
+                                <div class="subBorder"></div>
+                                <img class="item" src="./assets/img/input_check.svg" onclick="createSubTask()" alt="">
+                            </div>
+                        </div>
+                        <div id="subTaskList" class="listedSubTasks">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="addTaskBtns">
+        <div class="requiredInfo">
+            <p style="color:#ff3d00">*</p>
+            <p>This field is required</p>
+        </div>
+        <div class="createBtn">
+            <a class="clear brd-r10 d-none" onclick="clearTaskInput()">Clear <img src="./assets/img/close.svg"
+                    alt=""></a>
+            <button type="submit" class="create brd-r10" onclick="createTask('to-do')">Create Task <img
+                    src="./assets/img/check.png" alt=""></button>
+        </div>
+    </div>
+</form>

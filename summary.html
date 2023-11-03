@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/summary.css" />
+        <link rel="stylesheet" href="css/respon_header_template.css" />
+        <link rel="stylesheet" href="css/respon_footer_template.css" />
+        <link rel="shortcut icon" href="assets/img/join_favicon.png" type="image/x-icon"/>
+        <script src="./js/script.js"></script>
+        <script src="./js/storage.js"></script>
+        <script src="./js/loggedinuser.js"></script>
+        <script src="./js/summary.js"></script>
+        <title>JOIN - Summary</title>
+    </head>
+    <body>
+        <div class="insert-top" w3-include-html="./assets/template/respon_header_template.html">
+		</div>
+        <div class="insert-bottom" w3-include-html="./assets/template/respon_footer_template.html">
+		</div>
+        <main>
+            <div class="summary-container">
+                <div class="main-container">
+                    <div class="context-line">
+                        <h2 class="h2-47 h2-61">Summery</h2>
+                        <p>Everything in a nutshell!</p>
+                        <div class="blue-line"></div>
+                    </div>
+                </div>
+                <div class="third-container">
+                    <div id="toDo" onclick="switchToBoard()">
+                        <img id="pencil" src="assets/img/pencil.png" alt="" />
+                        <div>
+                            <h3 class="h3-47px">0</h3>
+                            <span class="summery-task-text">To-do</span>
+                        </div>
+                    </div>
+                    <div id="done" onclick="switchToBoard()">
+                        <img src="assets/img/done.png" alt="" />
+                        <div>
+                            <h3 class="h3-47px">0</h3>
+                            <span class="summery-task-text">Done</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="second-container">
+                    <div id="urgent" class="d-flex" onclick="switchToBoard()">
+                        <div class="d-flex urgent-left">
+                            <img src="assets/img/urgent.png" alt="urgent" />
+                            <div class="urgent-area-left mt-3 mb-3">
+                                <h3 class="h3-47px">0</h3>
+                                <span class="summery-task-text">Urgent</span>
+                            </div>
+                        </div>
+                        <div class="grey-line"></div>
+                        <div class="upcoming-deadline" id="deadLine">
+                            <p><b>October 16, 2022</b></p>
+                            <p>upcoming deadline</p>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="first-container">
+          <div id="taskInBoard" onclick="switchToBoard()">
+            <h3 class="h3-47px">0</h3>
+            <span class="summery-task-text">Tasks in<br />Board </span>
+          </div>
+          <div id="taskInProgress" onclick="switchToBoard()">
+            <h3 class="h3-47px">0</h3>
+            <span class="summery-task-text">
+              Tasks in<br />
+              Progress
+            </span>
+          </div>
+          <div id="awaitingfeedback" onclick="switchToBoard()">
+            <h3 class="h3-47px">0</h3>
+            <span class="summery-task-text">
+              Awaiting <br />
+              Feedback
+            </span>
+          </div>
+        </div>
+        <div class="right-container">
+          <p>Hello,</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </main>
+    <!-- MSG BOX -->
+    <div id="msgbox" class="msgbox">
+      <h3>Information</h3>
+      <p id="msgbox-text">To edit please register and log in.</p>
+    </div>
+  </body>
+</html>
