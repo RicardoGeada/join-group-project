@@ -216,7 +216,7 @@ async function saveEditContact() {
     let index = idToIndex(id, contactList);
     await updateContactFields(index);
     await saveData("contacts", contactList);
-    updateLocalStorage(index);
+    if (isCurrentUser(contactList[index].userid)) updateLocalStorage(index);
     sortedContactList = sortContacts(contactList);
     renderSaveEditContact(id);
 }

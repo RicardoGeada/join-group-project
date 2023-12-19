@@ -218,9 +218,9 @@ function loadContactsIntoDropdown() {
 function loadCheckButtonImg(contactID) {
   let isAssigned = currentTask['assigned_to'].includes(contactID);
   if (isAssigned) {
-    return '/assets/img/check_button_checked.svg';
+    return './assets/img/check_button_checked.svg';
   } else {
-    return '/assets/img/check_button_unchecked.svg';
+    return './assets/img/check_button_unchecked.svg';
   }
 }
 
@@ -269,11 +269,11 @@ function toggleAssignment(contactID,imgID) {
     contactListItem.classList.remove('assigned');
     let index = currentTask['assigned_to'].indexOf(contactID);
     currentTask['assigned_to'].splice(index,1);
-    checkBoxImg.src = '/assets/img/check_button_unchecked.svg';
+    checkBoxImg.src = './assets/img/check_button_unchecked.svg';
   } else {
     contactListItem.classList.add('assigned');
     currentTask['assigned_to'].push(contactID);
-    checkBoxImg.src = '/assets/img/check_button_checked.svg';
+    checkBoxImg.src = './assets/img/check_button_checked.svg';
   };
   renderAssignedUserBadgesEditTask();
 }

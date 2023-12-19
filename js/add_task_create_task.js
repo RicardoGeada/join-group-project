@@ -162,7 +162,7 @@ function renderContactInitials() {
         const initial = addedContacts[l];
         const index = sortedContactList.findIndex(c => c['id'] == initial);
 
-        contactInitialDivs.innerHTML += contactInitialsHTML(index, initial);
+        contactInitialDivs.innerHTML += contactInitialsHTML(index);
     };
 }
 

@@ -110,4 +110,15 @@ function clearAddPopup() {
     document.getElementById('addconphone').value = '';
 }
 
+/**
+ * Helper function: Sorts an array of Json objects alphabetically by the initials of the contacts.
+ * 
+ * @param {Array} arr - The array to sort.
+ * @returns - Returns a sorted copy.
+ */
+function sortContacts(arr) {
+    let targetArr = [...arr];
+    targetArr.sort((c1, c2) => (c1.initials < c2.initials ? -1 : c1.initials > c2.initials ? 1 : 0));
+    return targetArr;
+}
 

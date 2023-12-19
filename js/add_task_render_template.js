@@ -7,11 +7,10 @@
  * Generates HTML markup for a contact's initials badge.
  * @function
  * @param {number} index - The index of the contact in the sorted contact list.
- * @param {string} initial - The initials of the contact.
  * @returns {string} The HTML markup for the contact's initials badge.
  */
-function contactInitialsHTML(index, initial) {
-    return `<div class="profile-badge bc-${sortedContactList[index]['badge-color']} brd-white">${initial}</div>`;
+function contactInitialsHTML(index) {
+    return `<div class="profile-badge bc-${sortedContactList[index]['badge-color']} brd-white">${sortedContactList[index]['initials']}</div>`;
 }
 
 
