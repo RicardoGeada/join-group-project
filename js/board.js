@@ -1,16 +1,3 @@
-let tasks = [];
-let users = [];
-let currentUser = {};
-let guestUser = {
-                  'id' : -2,
-                  'name' : 'Guest User',
-                  'initials' : 'GU',
-                  'email' : '',
-                  'password' : '',
-                  'phone' : '',
-                  'badge-color' : 1,
-                  'contacts' : [],
-                };
 let taskStateCategories = ["to-do", "in-progress", "await-feedback", "done"];
 let currentTask;
 let search = '';
@@ -23,41 +10,15 @@ let contactSearch = '';
 /* ===== LOAD & SAVE ===== */
 /* ======================= */
 
-async function loadUsersFromStorage() {
-  users = JSON.parse(await getItem('users'));
-}
-
-async function loadCurrentUserFromStorage() {
-  let currentUserID = localStorage.getItem('loggedInUserID');
-  if (currentUserID >= 0) {
-    currentUser = users.find( user => user['id'] == currentUserID)
-  } else if (currentUserID == -2) {
-    currentUser = guestUser;
-  }
-}
-
-
-async function loadTasksFromStorage() {
-  tasks = JSON.parse(await getItem('tasks'));
-}
-
-
-async function saveTasksToStorage() {
-  await setItem('tasks', JSON.stringify(tasks));
-}
-
 
 /**
  * onload function to load and render the content
  */
 async function initBoard() {
   renderMobileOrDesktopBoardHeader(window.innerWidth >= 1000);
-  await loadUsersFromStorage();
-  await loadCurrentUserFromStorage();
   await loadTasksFromStorage();
   await loadLastContactId();
   renderAllTasks();
-  sortContactsOnBoard(contacts);
   initAddTask();
 }
 
@@ -322,6 +283,7 @@ function renderMobileOrDesktopBoardHeader(match) {
   setSearchInputValueToCurrentSearch();
 }
 
+
 /**
  * transfer the search term from mobile to desktop view and vice versa
  */
@@ -375,9 +337,8 @@ function closeAddTaskPopup() {
 /* ============================== */
 
 async function loadContactsWithAddedContact(taskID) {
-  await loadContactsFromStorage();
   sortContactsOnBoard(contacts);
-  openContacts(taskID);
+  openContactList(taskID);
 }
 
 

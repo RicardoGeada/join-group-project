@@ -1,5 +1,3 @@
-let users = [];
-
 /**
  * Navigates back to the login page.
  */
@@ -51,15 +49,6 @@ function showPasswordRequirements() {
   }, 3000);
 }
 
-/**
- * Loads users from storage.
- */
-async function loadUsers() {
-  let storedUsers = await getItem("users");
-  if (storedUsers) {
-    users = JSON.parse(storedUsers);
-  }
-}
 
 /**
  * Loads the last contact ID from storage.
@@ -399,7 +388,7 @@ let loggedInUserID = +localStorage.getItem("loggedInUserID");
  */
 async function initLoggedInUser() {
   await loadHeaderUsersFromStorage();
-  if (loggedInUserID != -2 && useridToIndex(loggedInUserID, userList) == -1) {
+  if (loggedInUserID != -2 && useridToIndex(loggedInUserID, users) == -1) {
     userLogout();
   } else {
     renderHeaderUserName();

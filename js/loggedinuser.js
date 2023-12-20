@@ -26,7 +26,7 @@ if(!loggedInUserID || !loggedInUser) {
  */
 async function initLoggedInUser() {
     await loadHeaderUsersFromStorage();
-    if(loggedInUserID != -2 && useridToIndex(loggedInUserID, userList) == -1) {
+    if(loggedInUserID != -2 && useridToIndex(loggedInUserID, users) == -1) {
         userLogout();
     } else {
         renderHeaderUserName();
@@ -68,10 +68,10 @@ function msgBox(text = 'To edit please register and log in.') {
  * Determines the index in the user list from the user ID.
  * 
  * @param {number} id - Id for contact.
- * @param {Array} arr - Array of userList.
+ * @param {Array} arr - Array of users.
  * @returns - returns the index found.
  */
-function useridToIndex(id, arr = userList) {
+function useridToIndex(id, arr = users) {
     return arr.findIndex(function (item, i) {
         return item.id === id;
     });
@@ -83,8 +83,8 @@ function useridToIndex(id, arr = userList) {
    */
 async function loadHeaderUsersFromStorage() {
     let tempData;
-    tempData = await loadData('users', userList);
-    userList = tempData;
+    tempData = await loadData('users', users);
+    users = tempData;
 }
 
 
@@ -92,12 +92,12 @@ async function loadHeaderUsersFromStorage() {
  * Renders the user's initials into the badge.
  */
 async function renderHeaderUserName() {
-    let index = useridToIndex(loggedInUserID, userList);
+    let index = useridToIndex(loggedInUserID, users);
     let obj = document.getElementById('user-name');
     if(obj === null) {
         window.location.reload();
     } else {
-        loggedInUserID == -2 ? obj.innerHTML = 'G' : obj.innerHTML = userList[index].initials;
+        loggedInUserID == -2 ? obj.innerHTML = 'G' : obj.innerHTML = users[index].initials;
     }
 }
 

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function () {    
     await initContacts();
 });
 
@@ -107,7 +107,7 @@ function initialsFrom(string) {
  * Initializes required data
  */
 async function initContacts() {
-    if(isLoaded == false) {
+    if(!isLoaded) {
         await userAndContacts();
     }
     await loadLastContactId();
@@ -242,13 +242,13 @@ async function updateContactFields(index) {
  * @param {number} index - Index for the contact details in the contact list
  */
 async function updateUserFields(index) {
-    let userIndex = idToIndex(contacts[index].userid, userList);
+    let userIndex = idToIndex(contacts[index].userid, users);
     if(isCurrentUser(contacts[index].userid)) {
-        userList[userIndex].name = contacts[index].name;
-        userList[userIndex].initials = contacts[index].initials;
-        userList[userIndex].email = contacts[index].email;
-        userList[userIndex].phone = contacts[index].phone;
-        await saveData("users", userList);
+        users[userIndex].name = contacts[index].name;
+        users[userIndex].initials = contacts[index].initials;
+        users[userIndex].email = contacts[index].email;
+        users[userIndex].phone = contacts[index].phone;
+        await saveData("users", users);
     }
 }
 
@@ -326,9 +326,9 @@ async function deleteNow(id, index, userId) {
  */
 async function deleteUser(userId) {
     if(userId >= 0) {
-        let userIndex = idToIndex(userId, userList);
-        userList.splice(userIndex, 1);
-        await saveData("users", userList);
+        let userIndex = idToIndex(userId, users);
+        users.splice(userIndex, 1);
+        await saveData("users", users);
         if(userId == loggedInUserID) {
             userLogout();
         }

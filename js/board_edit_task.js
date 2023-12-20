@@ -158,6 +158,7 @@ function openContactList(taskID) {
   let contactList = document.getElementById('assigned-contacts-list');
   contactList.classList.remove('d-none');
   toggleContactsDropdownArrow();
+  sortContactsUserFirst(contacts);
   loadContactsIntoDropdown(taskID);
   closeCategoryList();
 }
@@ -298,24 +299,6 @@ function renderAssignedUserBadgesEditTask() {
 
 
 /**
- * sort contacts alphabetically & puts current user at the first position
- * @param {Array} arr - contacts array
- */
-function sortContactsOnBoard(arr) {
-  sortedContacts = [...arr];
-  sortedContacts.sort((c1, c2) =>
-    c1.initials < c2.initials ? -1 : c1.initials > c2.initials ? 1 : 0
-  );
-  // place user at the first position
-  if (currentUser['id'] >= 0) {
-    const currentUserIndex = sortedContacts.findIndex(contact => contact['userid'] == currentUser['id']);
-    const currentUserContactInfo = JSON.parse(JSON.stringify(sortedContacts[currentUserIndex]));
-    sortedContacts.splice(currentUserIndex,1);
-    sortedContacts.unshift(currentUserContactInfo);
-  }
-}
-
-/**
  * search in the contacts for specific contacts
  */
 function searchContactsEditTask() {
@@ -367,6 +350,7 @@ function editSubtaskWithEnter(event,subtaskIndex) {
     saveSubtask(subtaskIndex);
 }
 }
+
 
 /**
  * save the edited subtask

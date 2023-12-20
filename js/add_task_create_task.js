@@ -2,12 +2,7 @@ let expanded = false;
 let selectTrigger = document.querySelector('.select-trigger');
 
 let taskStatus = localStorage.getItem('taskStatus') || 'to-do';
-// let taskContacts = [];
-let currentTaskUser = {};
-let taskUsers = [];
-// let tasks = [];
 let addedContacts = [];
-// let sortedTaskContacts = [];
 let addedContactInitial = [];
 let badges = [];
 let categoryColor;
@@ -26,94 +21,12 @@ let addedSubTasks = [];
  * @returns {Promise<void>} A Promise that resolves when initialization is complete.
  */
 async function initAddTask() {
-    await loadTaskUsersFromStorage();
-    await includeHTML();
-    await loadTaskContactsFromStorage();
-    await loadTasksFromRemoteStorage();
+    await loadUsersFromStorage();
+    await loadCurrentUserFromStorage();
+    await loadTasksFromStorage();
+    sortContactsUserFirst(contacts);
     renderContacts();
-}
 
-
-/**
- * Loads task contacts from storage and sorts them if necessary.
- * @async
- * @function
- * @throws {Error} Throws an error if loading or sorting contacts fails.
- */
-async function loadTaskContactsFromStorage() {
-    await loadCurrentFromStorage();
-    // taskContacts = JSON.parse(await getItem('contacts'));
-    if (contacts.length > 1) {
-        sortTaskContacts(contacts);
-    } else {
-        sortedContacts = contacts;
-    }
-}
-
-
-/**
- * Loads tasks from remote storage and parses them as JSON.
- * @async
- * @function
- * @throws {Error} Throws an error if loading or parsing tasks fails.
- */
-async function loadTasksFromRemoteStorage() {
-    tasks = JSON.parse(await getItem('tasks'));
-}
-
-
-/**
- * Loads task users from storage and parses them as JSON.
- * @async
- * @function
- * @throws {Error} Throws an error if loading or parsing task users fails.
- */
-async function loadTaskUsersFromStorage() {
-    taskUsers = JSON.parse(await getItem('users'));
-}
-
-
-/**
- * Loads the current user from storage or sets it to a guest user.
- * @async
- * @function
- */
-async function loadCurrentFromStorage() {
-    let currentUserID = localStorage.getItem('loggedInUserID');
-    if (currentUserID >= 0) {
-        currentTaskUser = taskUsers.find(user => user['id'] == currentUserID)
-    } else if (currentUserID == -2) {
-        currentTaskUser = {
-            'id': -2,
-            'name': 'Guest User',
-            'initials': 'GU',
-            'email': '',
-            'password': '',
-            'phone': '',
-            'badge-color': 1,
-            'contacts': [],
-        };
-    }
-}
-
-
-/**
- * Sorts a list of contacts alphabetically by initials.
- * @async
- * @function
- * @param {Array} arr - The array of contacts to be sorted.
- */
-async function sortTaskContacts(arr) {
-    sortedContacts = [...arr];
-    sortedContacts.sort(
-        (c1, c2) =>
-            (c1.initials < c2.initials) ? -1 : (c1.initials > c2.initials) ? 1 : 0);
-    if (currentTaskUser['id'] >= 0) {
-        const currentUserIndex = sortedContacts.findIndex(contact => contact['userid'] == currentTaskUser['id']);
-        const currentUserContactInfo = JSON.parse(JSON.stringify(sortedContacts[currentUserIndex]));
-        sortedContacts.splice(currentUserIndex, 1);
-        sortedContacts.unshift(currentUserContactInfo);
-    }
 }
 
 
@@ -121,13 +34,12 @@ async function sortTaskContacts(arr) {
  * Renders contacts in the user interface.
  * @function
  */
-function renderContacts() {
+async function renderContacts() {
     let assignedToContact = document.getElementById('contactDropDown');
     assignedToContact.innerHTML = '';
 
     for (let i = 0; i < sortedContacts.length; i++) {
         const contact = sortedContacts[i];
-
         assignedToContact.innerHTML += renderContactHTML(i, contact);
     }
 }
@@ -140,7 +52,7 @@ function renderContacts() {
  * @returns {string} A string indicating the user state ('(You)', '', or '(User)').
  */
 function checkUserState(userid) {
-    if (userid == currentTaskUser['id']) {
+    if (userid == currentUser['id']) {
         return '(You)';
     } else if (userid < 0) {
         return '';
@@ -290,9 +202,9 @@ function showContacts() {
     let checkboxes = document.getElementById('checkBoxes');
     let input = document.getElementById('searchContact');
     if (!expanded) {
-        openContactDropDown(arrow, checkboxes, input)
+        openContactDropDown(arrow, checkboxes, input);
     } else {
-        closeContactDropDown(arrow, checkboxes, input)
+        closeContactDropDown(arrow, checkboxes, input);
     }
 }
 
@@ -409,7 +321,7 @@ function createSubTask() {
  */
 function createTask() {
     const checked = checkInputData();
-    if (currentTaskUser['id'] == -2 && checked === true) {
+    if (currentUser['id'] == -2 && checked === true) {
         msgBox(text = 'To create a new task, please register and log in.');
         setTimeout(function () {
             window.location.href = 'board.html'
@@ -452,7 +364,6 @@ function setNewTaskData() {
  * @throws {Error} Throws an error if adding the new task fails.
  */
 async function addNewTask(title, description, priority, date, category, assignedTo, subtasks) {
-    await loadTasksFromRemoteStorage();
     let newTask = {
         'id': getTaskId(),
         'status': taskStatus,
@@ -465,7 +376,6 @@ async function addNewTask(title, description, priority, date, category, assigned
         'assigned_to': assignedTo,
         'subtasks': subtasks,
     };
-
     pushNewTask(newTask);
 }
 
