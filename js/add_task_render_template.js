@@ -50,17 +50,25 @@ function renderSubHTML(sub, index) {
                     ${maskSpecialChars(sub)}
                 </div>
                 <div class="subListInnerElement">
-                    <img class="item" src="./assets/img/edit_icon.svg" onclick="editSubElement(${index})">
+                    <button type="button" class="icon-button" onclick="editSubElement(${index})">
+                        <img class="item" src="./assets/img/edit_icon.svg">
+                    </button>
                     <div class="subBorder"></div>
-                    <img class="item" src="./assets/img/delete_icon.svg" onclick="deleteSub(${index})">
+                    <button type="button" class="icon-button" onclick="deleteSub(${index})">
+                        <img class="item" src="./assets/img/delete_icon.svg">
+                    </button>
                 </div>
             </div>
             <div id="editListElement${index}" class="editSub d-none">
                 <input id="editSubTask${index}" type="text" onkeydown="enterKeyDownEditSub(event,${index})">
                 <div class="editListElementButton">
-                    <img class="item" src="./assets/img/delete_icon.svg" onclick="deleteSub(${index})">
+                    <button type="button" class="icon-button" onclick="deleteSub(${index})">
+                        <img class="item" src="./assets/img/delete_icon.svg">
+                    </button>    
                     <div class="subBorder"></div>
-                    <img  class="item" src="./assets/img/input_check.svg" onclick="setNewSubValue(${index})">
+                    <button type="button" class="icon-button" onclick="setNewSubValue(${index})">
+                        <img  class="item" src="./assets/img/input_check.svg">
+                    </button>
                 </div>
             </div>`;
 }

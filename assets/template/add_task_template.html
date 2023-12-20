@@ -39,8 +39,9 @@
                             <input type="text" class="brd-transparent width-100" name="" id="searchContactInput"
                                 placeholder="Select contacts to assign"
                                 onkeyup="searchContacts()">
-                            <img id="contactsArrow" class="item" src="./assets/img/arrow_drop_down.svg"
-                                onclick="showContacts()">
+                            <button type="button" class="icon-button" onclick="showContacts(), stopPropagation(event)">
+                                <img id="contactsArrow" class="item" src="./assets/img/arrow_drop_down.svg">
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -102,7 +103,9 @@
                                 <div id="categoryInput" class="categorySelector brd-r10 item"
                                     onclick="selectCategory(); resetInputAlert('categoryInput'), setFocus('categoryInput'), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('categoryInput'), stopPropagation(event)">
                                     <p id="chosenCategory">Select task Category</p>
-                                    <img id="categoryArrow" src="./assets/img/arrow_drop_down.svg" alt="">
+                                    <button type="button" class="icon-button" onclick="selectCategory(),stopPropagation(event)">
+                                        <img id="categoryArrow" src="./assets/img/arrow_drop_down.svg" alt="">
+                                    </button>
                                 </div>
                                 <div id="allOptions" class="selector brd-r10 d-none">
                                     <div class="option item brd-r10" onclick="selectOption(this)">Technical Task</div>
@@ -116,14 +119,20 @@
                         <h4>Subtasks</h4>
                         <div id="subTaskInputCover" class="item brd-r10" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), toggleFocus('subTaskInputCover'), stopPropagation(event), toggleSubTaskInput()">
                             <p>Add new subtask</p>
-                            <img src="./assets/img/add.svg" alt="">
+                            <button type="button" class="icon-button" onclick="closeCategoryDropdown()">
+                                <img src="./assets/img/add.svg" alt="">
+                            </button>
                         </div>
                         <div id="realSubInput" class="subTaskInput d-none">
                             <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)">
                             <div class="subInputButton">
-                                <img class="item" src="./assets/img/close.svg" onclick="toggleSubTaskInput()" alt="">
+                                <button type="button" class="icon-button" onclick="toggleSubTaskInput()">
+                                    <img class="item" src="./assets/img/close.svg"  alt="">
+                                </button>
                                 <div class="subBorder"></div>
-                                <img class="item" src="./assets/img/input_check.svg" onclick="createSubTask()" alt="">
+                                <button type="button" class="icon-button" onclick="createSubTask()">
+                                    <img class="item" src="./assets/img/input_check.svg" alt="">
+                                </button>        
                             </div>
                         </div>
                         <div id="subTaskList" class="listedSubTasks">
