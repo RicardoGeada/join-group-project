@@ -31,15 +31,15 @@ function openEditCon() {
 function openContact(id) {
     renderSingleView(id);
     document.getElementById("contact-single").classList.remove("d-none");
-    unselectContactList();
-    selectContactList(id);
+    unselectContacts();
+    selectContacts(id);
 }
 
 
 /**
  * Help function to remove selection
  */
-function unselectContactList() {
+function unselectContacts() {
     useroptions(true);
     let obj = document.getElementsByClassName("contact-listbox");
     for (let i = 0; i < obj.length; i++) {
@@ -53,7 +53,7 @@ function unselectContactList() {
  * 
  * @param {number} id - The id of the selected contact
  */
-function selectContactList(id) {
+function selectContacts(id) {
     useroptions(true);
     document.getElementById(`contact-listbox-${id}`).classList.add("select");
 }
@@ -64,7 +64,7 @@ function selectContactList(id) {
  */
 function closeContact() {
     document.getElementById("contact-single").classList.add("d-none");
-    unselectContactList();
+    unselectContacts();
 }
 
 
@@ -75,7 +75,7 @@ function closeContact() {
  * @param {Array} arr - Array with contacts or users
  * @returns - index in Array
  */
-function idToIndex(id, arr = contactList) {
+function idToIndex(id, arr = contacts) {
     return arr.findIndex(function (item, i) {
         return item.id === id;
     });
@@ -111,10 +111,10 @@ async function initContacts() {
         await userAndContacts();
     }
     await loadLastContactId();
-    sortedContactList = sortMyList(contactList);
+    sortedContacts = sortMyList(contacts);
     let comeFrom = document.location.pathname;
     if (comeFrom.includes("contacts.html")) {
-        renderContactList();
+        renderContacts();
     }
 }
 
@@ -139,8 +139,8 @@ async function saveNewContact() {
         let newDataSet = readNewInputs();
         let answer;
         clearAddPopup();
-        contactList.push(newDataSet[0]);
-        answer = await saveData("contacts", contactList);
+        contacts.push(newDataSet[0]);
+        answer = await saveData("contacts", contacts);
         isSavedNewContact(answer);
     }
 }
@@ -154,8 +154,8 @@ async function saveNewContact() {
  */
 async function isSavedNewContact(answer) {
     if(answer) {
-        sortedContactList = sortContacts(contactList);
-        renderContactList();
+        sortedContacts = sortContacts(contacts);
+        renderContacts();
         document.getElementById("contactsuccess").classList.add("shortpopup");
         setTimeout(() => {
             document.getElementById("contactsuccess").classList.remove("shortpopup");
@@ -213,11 +213,11 @@ function clearAddPopup() {
  */
 async function saveEditContact() {
     let id = +document.getElementById("editconid").value;
-    let index = idToIndex(id, contactList);
+    let index = idToIndex(id, contacts);
     await updateContactFields(index);
-    await saveData("contacts", contactList);
-    if (isCurrentUser(contactList[index].userid)) updateLocalStorage(index);
-    sortedContactList = sortContacts(contactList);
+    await saveData("contacts", contacts);
+    if (isCurrentUser(contacts[index].userid)) updateLocalStorage(index);
+    sortedContacts = sortContacts(contacts);
     renderSaveEditContact(id);
 }
 
@@ -228,10 +228,10 @@ async function saveEditContact() {
  * @param {number} index - Index for the contact details in the contact list
  */
 async function updateContactFields(index) {
-    contactList[index].name = document.getElementById("editconname").value;
-    contactList[index].initials = initialsFrom(document.getElementById("editconname").value);
-    contactList[index].email = document.getElementById("editconemail").value;
-    contactList[index].phone = document.getElementById("editconphone").value;
+    contacts[index].name = document.getElementById("editconname").value;
+    contacts[index].initials = initialsFrom(document.getElementById("editconname").value);
+    contacts[index].email = document.getElementById("editconemail").value;
+    contacts[index].phone = document.getElementById("editconphone").value;
     await updateUserFields(index);
 }
 
@@ -242,12 +242,12 @@ async function updateContactFields(index) {
  * @param {number} index - Index for the contact details in the contact list
  */
 async function updateUserFields(index) {
-    let userIndex = idToIndex(contactList[index].userid, userList);
-    if(isCurrentUser(contactList[index].userid)) {
-        userList[userIndex].name = contactList[index].name;
-        userList[userIndex].initials = contactList[index].initials;
-        userList[userIndex].email = contactList[index].email;
-        userList[userIndex].phone = contactList[index].phone;
+    let userIndex = idToIndex(contacts[index].userid, userList);
+    if(isCurrentUser(contacts[index].userid)) {
+        userList[userIndex].name = contacts[index].name;
+        userList[userIndex].initials = contacts[index].initials;
+        userList[userIndex].email = contacts[index].email;
+        userList[userIndex].phone = contacts[index].phone;
         await saveData("users", userList);
     }
 }
@@ -259,11 +259,11 @@ async function updateUserFields(index) {
  * @param {*} index - Index for the contact details in the contact list
  */
 function updateLocalStorage(index) {
-    localStorage.setItem('loggedInUser', contactList[index].name);
+    localStorage.setItem('loggedInUser', contacts[index].name);
     if(localStorage.getItem("rememberEmail")) {
-        localStorage.setItem('rememberEmail', contactList[index].email);
+        localStorage.setItem('rememberEmail', contacts[index].email);
     }
-    localStorage.setItem('loggedInUser', contactList[index].name);
+    localStorage.setItem('loggedInUser', contacts[index].name);
     loggedInUser = localStorage.getItem("loggedInUser");
 }
 
@@ -275,7 +275,7 @@ function updateLocalStorage(index) {
  */
 function renderSaveEditContact(id) {
     renderHeaderUserName();
-    renderContactList();
+    renderContacts();
     renderSingleView(id);
     openEditCon();
 }
@@ -288,8 +288,8 @@ function renderSaveEditContact(id) {
  * @param {number} id The id from user in Database
  */
 async function deleteContact(id) {
-    let index = idToIndex(id, contactList);
-    let userId = contactList[index].userid;
+    let index = idToIndex(id, contacts);
+    let userId = contacts[index].userid;
     if(isNotAUser || isCurrentUser(userId)) {
         msgBox();
         closeContact();
@@ -310,10 +310,10 @@ async function deleteContact(id) {
 async function deleteNow(id, index, userId) {
     deleteContactFromTasks(id);
     deleteUser(userId);
-    contactList.splice(index, 1);
-    await saveData("contacts", contactList);
-    sortedContactList = sortContacts(contactList);
-    renderContactList();
+    contacts.splice(index, 1);
+    await saveData("contacts", contacts);
+    sortedContacts = sortContacts(contacts);
+    renderContacts();
     closeContact();
     document.getElementById("popup-editcon").classList.remove("inview");
 }
@@ -399,11 +399,11 @@ function openMore() {
 /**
  * Renders the collection of contacts.
  */
-function renderContactList() {
+function renderContacts() {
     let newContent = "", firstLetter = "";
-    for (let i = 0; i < sortedContactList.length; i++) {
-        let isUser = isCurrentUserInfo(sortedContactList[i].userid);
-        let answer = nextLetter(sortedContactList[i].initials[0], firstLetter);
+    for (let i = 0; i < sortedContacts.length; i++) {
+        let isUser = isCurrentUserInfo(sortedContacts[i].userid);
+        let answer = nextLetter(sortedContacts[i].initials[0], firstLetter);
         firstLetter = answer[1];
         newContent += answer[0];
         newContent += renderListEntry(i, isUser);
@@ -485,17 +485,17 @@ function renderLetterbox(letter = "No Contacts") {
  */
 function renderListEntry(i, isUser = "") {
   return `
-        <div id="contact-listbox-${sortedContactList[i].id}" class="contact-listbox" onclick="openContact(${sortedContactList[i].id})">
+        <div id="contact-listbox-${sortedContacts[i].id}" class="contact-listbox" onclick="openContact(${sortedContacts[i].id})">
             <div class="contact-listbox-badgebox">
                 <div class="contact-listbox-badge">
-                    <div class="contact-listbox-badge-circle bg-contact-${sortedContactList[i]["badge-color"]}">
-                        <span class="contact-listbox-badge-text">${sortedContactList[i].initials}</span>
+                    <div class="contact-listbox-badge-circle bg-contact-${sortedContacts[i]["badge-color"]}">
+                        <span class="contact-listbox-badge-text">${sortedContacts[i].initials}</span>
                     </div>
                 </div>
             </div>
             <div class="contact-listbox-namebox">
-                <span class="contact-listbox-name">${sortedContactList[i].name}${isUser}</span>
-                <span class="contact-listbox-mail">${sortedContactList[i].email}</span>
+                <span class="contact-listbox-name">${sortedContacts[i].name}${isUser}</span>
+                <span class="contact-listbox-mail">${sortedContacts[i].email}</span>
             </div>
         </div>
     `;
@@ -509,13 +509,13 @@ function renderListEntry(i, isUser = "") {
  * @param {number} id - Id for contact.
  */
 function renderSingleView(id) {
-    let index = idToIndex(id, sortedContactList);
-    let isUser = isCurrentUserInfo(sortedContactList[index].userid);
-    document.getElementById("contact-single-info-badge-text").innerHTML = sortedContactList[index].initials;
-    document.getElementById("contact-single-info-name-text").innerHTML = sortedContactList[index].name + isUser;
-    document.getElementById("contact-single-info-email-text").innerHTML = sortedContactList[index].email;
-    document.getElementById("contact-single-info-phone-text").innerHTML = sortedContactList[index].phone;
-    document.getElementById("contact-single-info-badge-circle").className = `contact-single-info-badge-circle bg-contact-${sortedContactList[index]["badge-color"]}`;
+    let index = idToIndex(id, sortedContacts);
+    let isUser = isCurrentUserInfo(sortedContacts[index].userid);
+    document.getElementById("contact-single-info-badge-text").innerHTML = sortedContacts[index].initials;
+    document.getElementById("contact-single-info-name-text").innerHTML = sortedContacts[index].name + isUser;
+    document.getElementById("contact-single-info-email-text").innerHTML = sortedContacts[index].email;
+    document.getElementById("contact-single-info-phone-text").innerHTML = sortedContacts[index].phone;
+    document.getElementById("contact-single-info-badge-circle").className = `contact-single-info-badge-circle bg-contact-${sortedContacts[index]["badge-color"]}`;
     document.getElementById("options").innerHTML = renderOptions(id);
     document.getElementById("contact-single-info-options").innerHTML = renderOptions(id);
     isOptionsView(id, index);
@@ -530,7 +530,7 @@ function renderSingleView(id) {
  * @param {number} index - Index of the current contact in the sorted contact list.
  */
 function isOptionsView(id, index) {
-    if(isCurrentUserInfo(sortedContactList[index].userid) != " (User)") {
+    if(isCurrentUserInfo(sortedContacts[index].userid) != " (User)") {
         document.getElementById('contact-btn-option-box').classList.remove('d-none');
         renderPopupEdit(id);
     } else {
@@ -547,7 +547,7 @@ function isOptionsView(id, index) {
  */
 function renderOptions(id) {
     let content = "";
-    if(isCurrentUserInfo(sortedContactList[idToIndex(id, sortedContactList)].userid) != " (User)") {
+    if(isCurrentUserInfo(sortedContacts[idToIndex(id, sortedContacts)].userid) != " (User)") {
         content += renderOptionEdit(id);
         content += renderOptionDelete(id);
     }
@@ -598,13 +598,13 @@ function renderOptionDelete(id) {
  * @param {number} id - Id for contact.
  */
 function renderPopupEdit(id) {
-    let index = idToIndex(id, sortedContactList);
-    document.getElementById("popup-person-imgbox").className = `popup-person-imgbox bg-contact-${sortedContactList[index]["badge-color"]}`;
-    document.getElementById("popup-person-imgbox-text").innerHTML = sortedContactList[index].initials;
-    document.getElementById("editconid").value = sortedContactList[index].id;
-    document.getElementById("editconname").value = sortedContactList[index].name;
-    document.getElementById("editconemail").value = sortedContactList[index].email;
-    document.getElementById("editconphone").value = sortedContactList[index].phone;
+    let index = idToIndex(id, sortedContacts);
+    document.getElementById("popup-person-imgbox").className = `popup-person-imgbox bg-contact-${sortedContacts[index]["badge-color"]}`;
+    document.getElementById("popup-person-imgbox-text").innerHTML = sortedContacts[index].initials;
+    document.getElementById("editconid").value = sortedContacts[index].id;
+    document.getElementById("editconname").value = sortedContacts[index].name;
+    document.getElementById("editconemail").value = sortedContacts[index].email;
+    document.getElementById("editconphone").value = sortedContacts[index].phone;
     document.getElementById("popup-editcon-btn-delete").innerHTML = `
         <button onclick='deleteContact(${id})' type="button" class="btn light">Delete</button>
     `;

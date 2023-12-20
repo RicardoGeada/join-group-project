@@ -200,8 +200,8 @@ async function register(fields) {
   };
 
   await loadFromStorage();
-  contactList.push(newContact);
-  await setItem("contacts", JSON.stringify(contactList));
+  contacts.push(newContact);
+  await setItem("contacts", JSON.stringify(contacts));
 }
 
 /**

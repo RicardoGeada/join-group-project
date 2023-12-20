@@ -1,7 +1,5 @@
 let tasks = [];
 let users = [];
-let contacts = [];
-let sortedContacts = [];
 let currentUser = {};
 let guestUser = {
                   'id' : -2,
@@ -38,13 +36,11 @@ async function loadCurrentUserFromStorage() {
   }
 }
 
-async function loadContactsFromStorage() {
-  contacts = JSON.parse(await getItem('contacts'));
-}
 
 async function loadTasksFromStorage() {
   tasks = JSON.parse(await getItem('tasks'));
 }
+
 
 async function saveTasksToStorage() {
   await setItem('tasks', JSON.stringify(tasks));
@@ -58,7 +54,6 @@ async function initBoard() {
   renderMobileOrDesktopBoardHeader(window.innerWidth >= 1000);
   await loadUsersFromStorage();
   await loadCurrentUserFromStorage();
-  await loadContactsFromStorage();
   await loadTasksFromStorage();
   await loadLastContactId();
   renderAllTasks();
@@ -379,10 +374,10 @@ function closeAddTaskPopup() {
 /* ===== NEW CONTACT CLOSE  ===== */
 /* ============================== */
 
-async function loadContactListWithAddedContact(taskID) {
+async function loadContactsWithAddedContact(taskID) {
   await loadContactsFromStorage();
   sortContactsOnBoard(contacts);
-  openContactList(taskID);
+  openContacts(taskID);
 }
 
 

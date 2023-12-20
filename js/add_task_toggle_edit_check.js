@@ -406,7 +406,7 @@ function checkedCheckBox(selectedContact, checked, src, id, badge, index) {
     checked.classList.add('selectedSvg');
     addedContacts.push(id);
     badges.push(badge);
-    addedContactInitial.push(taskContacts[index]['initials']);
+    addedContactInitial.push(contacts[index]['initials']);
     document.getElementById('searchContactInput').value = "";
 }
 

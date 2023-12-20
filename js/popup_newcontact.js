@@ -42,11 +42,11 @@ async function saveNewContact() {
         let newDataSet = readNewInputs();
         let answer;
         clearAddPopup();
-        contactList.push(newDataSet[0]);
-        answer = await saveData("contacts", contactList);
-        reloadContactList();
+        contacts.push(newDataSet[0]);
+        answer = await saveData("contacts", contacts);
+        reloadContacts();
         if (editPopupOpen) {
-            loadContactListWithAddedContact(currentTask['id']);
+            loadContactsWithAddedContact(currentTask['id']);
         }
         isSavedNewContact(answer);
     }
@@ -61,7 +61,7 @@ async function saveNewContact() {
  */
 async function isSavedNewContact(answer) {
     if(answer) {
-        sortedContactList = sortContacts(contactList);
+        sortedContacts = sortContacts(contacts);
         document.getElementById("contactsuccess").classList.add("shortpopup");
         setTimeout(() => {
             document.getElementById("contactsuccess").classList.remove("shortpopup");

@@ -3,3 +3,5 @@ admin.html
 css/admin.css
 js/admin.js
 js/demodata.js
+js/data.js
+js/board_test_data.js

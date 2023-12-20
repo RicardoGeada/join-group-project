@@ -53,7 +53,7 @@ async function getItem(key) {
  * storing contact data.
  * @type {Array}
  */
-let contactList = [];
+let contacts = [];
 
 /**
  * storing user data.
@@ -65,7 +65,7 @@ let userList = [];
  * storing sorted contact data.
  * @type {Array}
  */
-let sortedContactList = [];
+let sortedContacts = [];
 
 /**
  * ID of the last contact.
@@ -78,7 +78,7 @@ let lastContactId = 0;
  * @returns {void}
  */
 async function userAndContacts() {
-  contactList = await loadFromStorage('contacts', contactList);
+  contacts = await loadFromStorage('contacts', contacts);
   userList = await loadFromStorage('users', userList);
   isLoaded = true;
 }
@@ -101,7 +101,7 @@ async function loadFromStorage(key = 'contacts', defaultList = []) {
  * @returns {Array} 
  */
 function sortMyList(myArray) {
-  if (contactList.length > 1) {
+  if (contacts.length > 1) {
     return sortContacts([...myArray]);
   } else {
     return [...myArray];

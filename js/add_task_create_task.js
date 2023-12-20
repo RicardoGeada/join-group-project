@@ -2,12 +2,12 @@ let expanded = false;
 let selectTrigger = document.querySelector('.select-trigger');
 
 let taskStatus = localStorage.getItem('taskStatus') || 'to-do';
-let taskContacts = [];
+// let taskContacts = [];
 let currentTaskUser = {};
 let taskUsers = [];
-let loadedTasks = [];
+// let tasks = [];
 let addedContacts = [];
-let sortedTaskContacts = [];
+// let sortedTaskContacts = [];
 let addedContactInitial = [];
 let badges = [];
 let categoryColor;
@@ -42,11 +42,11 @@ async function initAddTask() {
  */
 async function loadTaskContactsFromStorage() {
     await loadCurrentFromStorage();
-    taskContacts = JSON.parse(await getItem('contacts'));
-    if (taskContacts.length > 1) {
-        sortTaskContacts(taskContacts);
+    // taskContacts = JSON.parse(await getItem('contacts'));
+    if (contacts.length > 1) {
+        sortTaskContacts(contacts);
     } else {
-        sortedContactList = taskContacts;
+        sortedContacts = contacts;
     }
 }
 
@@ -58,7 +58,7 @@ async function loadTaskContactsFromStorage() {
  * @throws {Error} Throws an error if loading or parsing tasks fails.
  */
 async function loadTasksFromRemoteStorage() {
-    loadedTasks = JSON.parse(await getItem('tasks'));
+    tasks = JSON.parse(await getItem('tasks'));
 }
 
 
@@ -104,15 +104,15 @@ async function loadCurrentFromStorage() {
  * @param {Array} arr - The array of contacts to be sorted.
  */
 async function sortTaskContacts(arr) {
-    sortedContactList = [...arr];
-    sortedContactList.sort(
+    sortedContacts = [...arr];
+    sortedContacts.sort(
         (c1, c2) =>
             (c1.initials < c2.initials) ? -1 : (c1.initials > c2.initials) ? 1 : 0);
     if (currentTaskUser['id'] >= 0) {
-        const currentUserIndex = sortedContactList.findIndex(contact => contact['userid'] == currentTaskUser['id']);
-        const currentUserContactInfo = JSON.parse(JSON.stringify(sortedContactList[currentUserIndex]));
-        sortedContactList.splice(currentUserIndex, 1);
-        sortedContactList.unshift(currentUserContactInfo);
+        const currentUserIndex = sortedContacts.findIndex(contact => contact['userid'] == currentTaskUser['id']);
+        const currentUserContactInfo = JSON.parse(JSON.stringify(sortedContacts[currentUserIndex]));
+        sortedContacts.splice(currentUserIndex, 1);
+        sortedContacts.unshift(currentUserContactInfo);
     }
 }
 
@@ -125,8 +125,8 @@ function renderContacts() {
     let assignedToContact = document.getElementById('contactDropDown');
     assignedToContact.innerHTML = '';
 
-    for (let i = 0; i < sortedContactList.length; i++) {
-        const contact = sortedContactList[i];
+    for (let i = 0; i < sortedContacts.length; i++) {
+        const contact = sortedContacts[i];
 
         assignedToContact.innerHTML += renderContactHTML(i, contact);
     }
@@ -160,7 +160,7 @@ function renderContactInitials() {
 
     for (let l = 0; l < addedContacts.length; l++) {
         const initial = addedContacts[l];
-        const index = sortedContactList.findIndex(c => c['id'] == initial);
+        const index = sortedContacts.findIndex(c => c['id'] == initial);
 
         contactInitialDivs.innerHTML += contactInitialsHTML(index);
     };
@@ -187,7 +187,7 @@ function renderSubTaskUpdate() {
  * @async
  * @function
  */
-async function reloadContactList() {
+async function reloadContacts() {
     await initAddTask();
 }
 
@@ -362,8 +362,8 @@ function addedContact(index) {
     let selectedContact = document.getElementById(`contact${index}`);
     let checked = document.getElementById(`check${index}`);
     let src = checked.getAttribute("src");
-    let id = sortedContactList[index]['id'];   //set index from Contacts to ID
-    let badge = sortedContactList[index]['badge-color'];
+    let id = sortedContacts[index]['id'];   //set index from Contacts to ID
+    let badge = sortedContacts[index]['badge-color'];
 
     addedContactsCheckBox(selectedContact, checked, src, id, badge, index);
 
@@ -477,9 +477,9 @@ async function addNewTask(title, description, priority, date, category, assigned
  */
 function getTaskId() {
     let highestID = 0;
-    for (let i = 0; i < loadedTasks.length; i++) {
-        if (highestID < loadedTasks[i]['id']) {
-            highestID = loadedTasks[i]['id'];
+    for (let i = 0; i < tasks.length; i++) {
+        if (highestID < tasks[i]['id']) {
+            highestID = tasks[i]['id'];
         }
     }
     return highestID + 1;
@@ -494,8 +494,8 @@ function getTaskId() {
  * @throws {Error} Throws an error if pushing the new task or storing it in storage fails.
  */
 async function pushNewTask(newTask) {
-    loadedTasks.push(newTask);
-    await setItem('tasks', JSON.stringify(loadedTasks));
+    tasks.push(newTask);
+    await setItem('tasks', JSON.stringify(tasks));
     clearTaskInput();
     window.location.href = 'board.html';
 }
