@@ -69,15 +69,15 @@
                             onclick="resetPrioAlert('urgentBtn','mediumBtn','lowBtn')">
                             <button type="button" id="urgentBtn" class="item brd-r10" onclick="selectPrio(1)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
                                 Urgent 
-                                <img id="urgent" src="./assets/img/capa2.svg" alt="">
+                                <img id="urgent" src="./assets/img/prio-1.svg" alt="">
                             </button>
                             <button type="button" id="mediumBtn" class="item brd-r10" onclick="selectPrio(2)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
                                 Medium 
-                                <img id="medium" src="./assets/img/prio-media.svg" alt="">
+                                <img id="medium" src="./assets/img/prio-2.svg" alt="">
                             </button>
                             <button type="button" id="lowBtn" class="item brd-r10" onclick="selectPrio(3)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
                                 Low 
-                                <img id="low" src="./assets/img/prio-baja.svg" alt="">
+                                <img id="low" src="./assets/img/prio-3.svg" alt="">
                             </button>
                         </div>
                     </div>
@@ -123,10 +123,10 @@
                     
                     <div class="subTasks h4-gap">
                         <h4>Subtasks</h4>
-                        <div id="realSubInput" class="subTaskInput" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), stopPropagation(event), toggleSubTaskInput()">
-                            <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown()">
+                        <div id="realSubInput" class="subTaskInput" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), stopPropagation(event), openSubTaskInput()">
+                            <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), openSubTaskInput()">
                             <div class="subInputButton">
-                                <button id="createNewSubtaskButton" type="button" class="icon-button">
+                                <button id="createNewSubtaskButton" type="button" class="icon-button" onclick="openSubTaskInput(), stopPropagation(event)">
                                     <img src="./assets/img/add.svg" alt="">
                                 </button>
                                 <div id="addNewSubtaskButtons" class="d-none">
@@ -134,7 +134,7 @@
                                         <img class="item" src="./assets/img/close.svg"  alt="">
                                     </button>
                                     <div class="subBorder"></div>
-                                    <button type="button" class="icon-button" onclick="createSubTask()">
+                                    <button type="button" class="icon-button" onclick="createSubTask(), stopPropagation(event)">
                                         <img class="item" src="./assets/img/input_check.svg" alt="">
                                     </button>  
                                 </div>   
@@ -156,7 +156,7 @@
             <a class="clear brd-r10 d-none" onclick="clearTaskInput()">Clear <img src="./assets/img/close.svg"
                     alt=""></a>
             <button type="submit" class="create brd-r10" onclick="createTask('to-do')">Create Task <img
-                    src="./assets/img/check.png" alt=""></button>
+                    src="./assets/img/check.svg" alt=""></button>
         </div>
     </div>
 </form>

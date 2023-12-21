@@ -431,7 +431,7 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                 <!-- Subtasks -->
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Subtasks</div>
-                    <div class="input-field-container"  onclick="setFocusOnInput('input-subtasks')">
+                    <div id='subtasks-input-container' class="input-field-container"  onclick="setFocusOnInput('input-subtasks'), stopPropagation(event)">
                         <input id="input-subtasks" type="text" placeholder="Add new subtask" onkeydown="addNewSubtaskWithEnter(event)" onfocus="closeCategoryList(),closeContactList(${taskID})">
                         <button class="createNewSubtask-button icon-button" type="button">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -440,11 +440,11 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                             </svg> 
                         </button>
                         <div class="subtask-buttons-container add-new-task-buttons">
-                            <button class="btn-drop-new-subtask icon-button" onclick="stopPropagation(event);addNewSubtask(event);" type="button">
+                            <button class="btn-drop-new-subtask icon-button" onclick="stopPropagation(event),discardNewSubtaskEdit(), this.blur()" type="button">
                                 <img src="./assets/img/close.svg" alt="delete-icon">    
                             </button>
                             <div class="v-line-separator"></div>
-                            <button class="btn-add-new-subtask icon-button" onclick="stopPropagation(event);addNewSubtask(event);" type="button">
+                            <button class="btn-add-new-subtask icon-button" onclick="stopPropagation(event),addNewSubtask(event)" type="button">
                                 <img src="./assets/img/input_check.svg" alt="check-icon">
                             </button>
                         </div>

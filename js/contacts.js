@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", async function () {    
-    await initContacts();
-});
+// document.addEventListener("DOMContentLoaded", async function () {    
+//     await initContacts();
+// });
 
 // ############################################################
 // ----- Funktionen zum öffnen/schließen der Views ------------
@@ -107,9 +107,7 @@ function initialsFrom(string) {
  * Initializes required data
  */
 async function initContacts() {
-    if(!isLoaded) {
-        await userAndContacts();
-    }
+    await userAndContacts();
     await loadLastContactId();
     sortedContacts = sortMyList(contacts);
     let comeFrom = document.location.pathname;
@@ -565,7 +563,7 @@ function renderOptionEdit(id) {
   return `
         <div class="options-row" onclick="openEditCon(${id})">
             <div class="options-imgbox">
-                <img class="options-img" src="./assets/img/edit.png">
+                <img class="options-img" src="./assets/img/edit_icon.svg">
             </div>
             <span>Edit</span>
         </div>
@@ -583,7 +581,7 @@ function renderOptionDelete(id) {
   return `
         <div class="options-row" onclick="deleteContact(${id})">
             <div class="options-imgbox">
-                <img class="options-img" src="./assets/img/delete.png">
+                <img class="options-img" src="./assets/img/delete_icon.svg">
             </div>
             <span>Delete</span>
         </div>

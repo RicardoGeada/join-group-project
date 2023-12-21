@@ -15,7 +15,7 @@
     <script src="./js/contacts.js"></script>
     <title>Join - Contacts</title>
 </head>
-<body tabindex=0>
+<body tabindex=0 onload="initContacts()">
     <div class="insert-top" w3-include-html="./assets/template/respon_header_template.html">
     </div>
     <div class="insert-bottom" w3-include-html="./assets/template/respon_footer_template.html">
@@ -25,7 +25,7 @@
         <div class="contact-add-main" onclick="openAddCon()">
             <div class="contact-add-mainbox">
                 <span>Add new contact</span>
-                <img src="./assets/img/person_add.png" class="contact-add-img">
+                <img src="./assets/img/person_add.svg" class="contact-add-img">
             </div>
         </div>
         <div id="contact-list" class="contact-list">
@@ -45,7 +45,7 @@
     <!-- Contact single-view -->
     <div id="contact-single" class="contact-single-main d-none">
         <div id="backarrow" class="backarrow" onclick="closeContact()">
-            <img src="./assets/img/arrow_left.png">
+            <img src="./assets/img/arrow-left-line.svg">
         </div>
         <div class="contact-single-title-box">
             <div class="contact-single-title-text">
@@ -85,13 +85,13 @@
             <div id="options" class="options">
                 <div class="options-row" onclick="openEditCon()">
                     <div class="options-imgbox">
-                        <img class="options-img" src="./assets/img/edit.png">
+                        <img class="options-img" src="./assets/img/edit_icon.svg">
                     </div>
                     <span>Edit</span>
                 </div>
                 <div class="options-row" onclick="deleteContact()">
                     <div class="options-imgbox">
-                        <img class="options-img" src="./assets/img/delete.png">
+                        <img class="options-img" src="./assets/img/delete_icon.svg">
                     </div>
                     <span>Delete</span>
                 </div>
@@ -139,7 +139,7 @@
                         <div class="popup-addcon-input-innerbox">
                             <input type="email" id="addconemail" required pattern="[a-zA-Z0-9\.!%_\+\-]{1,64}[@][a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}" title="Valid email address please." placeholder="Email">
                             <div class="popup-addcon-input-imgbox">
-                                <img src="./assets/img/mail_20x16.png">
+                                <img src="./assets/img/mail.svg">
                             </div>
                         </div>
                     </div>
@@ -148,17 +148,17 @@
                         <div class="popup-addcon-input-innerbox">
                             <input type="tel" id="addconphone" required pattern="(\+|00)(\d){5,20}" title="International-Format: + or 00 and at least 5 digits after the + or 00, no spaces." placeholder="Phone">
                             <div class="popup-addcon-input-imgbox">
-                                <img src="./assets/img/call18.png">
+                                <img src="./assets/img/phone.png">
                             </div>
                         </div>
                     </div>
                     <div class="popup-addcon-btn">
-                        <button class="btn dark">Create contact<div><img src="./assets/img/check.png"></div></button>
+                        <button class="btn dark">Create contact<div><img src="./assets/img/check.svg"></div></button>
                     </div>
                 </form>
             </div>
             <div class="close-x" onclick="clearAddPopup()">
-                <img src="./assets/img/close.png">
+                <img src="./assets/img/close_blue_icon.svg">
             </div>
         </div>
     </div>
@@ -205,7 +205,7 @@
                         <div class="popup-editcon-input-innerbox">
                             <input type="email" id="editconemail" required pattern="[a-zA-Z0-9\.!%_\+\-]{1,64}[@][a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}" title="Valid email address please" placeholder="Email">
                             <div class="popup-editcon-input-imgbox">
-                                <img src="./assets/img/mail_20x16.png">
+                                <img src="./assets/img/mail.svg">
                             </div>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                         <div class="popup-editcon-input-innerbox">
                             <input type="tel" id="editconphone" required pattern="(\+|00)\d{5,20}" title="International-Format: +49... or 0049... and at least 5 digits after the + or 00" placeholder="Phone">
                             <div class="popup-editcon-input-imgbox">
-                                <img src="./assets/img/call18.png">
+                                <img src="./assets/img/phone.png">
                             </div>
                         </div>
                     </div>
@@ -223,13 +223,13 @@
                             <button type="button" class="btn light">Delete</button>
                         </div>
                         <div id="popup-editcon-btn-edit" class="popup-editcon-btn">
-                            <button type="submit" class="btn dark">Save<div><img src="./assets/img/check.png"></div></button>
+                            <button type="submit" class="btn dark">Save<div><img src="./assets/img/check.svg"></div></button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="close-x" onclick="openEditCon()">
-                <img src="./assets/img/close.png">
+                <img src="./assets/img/close_blue_icon.svg">
             </div>
             <div id="raute"><button onclick="openMore()">#</button></div>
         </div>

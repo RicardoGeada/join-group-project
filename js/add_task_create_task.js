@@ -157,7 +157,7 @@ function selectCategory() {
     if (options.classList.contains('d-none')) {
         arrow.src = "./assets/img/arrow_drop_down.svg"
     } else {
-        arrow.src = "./assets/img/arrow_up.svg"
+        arrow.src = "./assets/img/arrow_drop_down_up.svg"
     };
 }
 
@@ -220,7 +220,7 @@ function openContactDropDown(arrow, checkboxes, input) {
     checkboxes.classList.add('d-block');
     input.classList.add('brd-focus');
     expanded = true;
-    arrow.src = "./assets/img/arrow_up.svg"
+    arrow.src = "./assets/img/arrow_drop_down_up.svg"
 }
 
 
@@ -309,8 +309,7 @@ function createSubTask() {
             const sub = addedSubTasks[j]['subtask'];
             showSubs.innerHTML += renderSubHTML(sub, j);
         };
-
-        toggleSubTaskInput();
+        closeSubTaskInput();
     }
 }
 

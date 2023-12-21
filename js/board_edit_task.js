@@ -29,7 +29,7 @@ function editTask(taskID) {
  */
 function setFocusOnInput(id) {
   let input = document.getElementById(id);
-  input.focus();
+  if (document.activeElement !== input) input.focus();
 }
 
 
@@ -76,7 +76,7 @@ function toggleCategoryList() {
 function toggleCategoryDropdownArrow() {
   let img = document.getElementById('categoryArrow');
   if (categoryOpen) {
-    img.src = './assets/img/arrow_up.svg';
+    img.src = './assets/img/arrow_drop_down_up.svg';
   } else {
     img.src = './assets/img/arrow_drop_down.svg'
   }
@@ -190,7 +190,7 @@ function toggleContactList(taskID) {
 function toggleContactsDropdownArrow() {
   let img = document.getElementById('contactsArrow');
   if (contactsOpen) {
-    img.src = './assets/img/arrow_up.svg';
+    img.src = './assets/img/arrow_drop_down_up.svg';
   } else {
     img.src = './assets/img/arrow_drop_down.svg'
   }
@@ -385,16 +385,30 @@ function deleteSubtask(subtaskIndex) {
  */
 function addNewSubtask() {
   let input = document.getElementById(`input-subtasks`);
+  let inputContainer = document.getElementById('subtasks-input-container');
   if (input.value != '') {
     let newSubtask = {
       done: false,
       subtask: `${input.value}`,
     };
     currentTask['subtasks'].push(newSubtask);
+  } else {
+    inputContainer.classList.add('invalid');
+    setTimeout(() => inputContainer.classList.remove('invalid'), 1000);
   }
   input.value = '';
   input.blur();
   renderSubtasksInEditTask();
+}
+
+
+/**
+ * discard the new subtask
+ */
+function discardNewSubtaskEdit() {
+  let input = document.getElementById(`input-subtasks`);
+  input.value = '';
+  input.blur();
 }
  
 

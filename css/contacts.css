@@ -1224,7 +1224,7 @@ div, nav, main, span, ::after {
     }
 
     .close-x img {
-        content: url('../assets/img/close_dark.png');
+        content: url('../assets/img/close_blue_icon.svg');
     }
 
     /* ----- popup-editcon ----- */

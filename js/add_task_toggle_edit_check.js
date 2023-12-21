@@ -101,16 +101,35 @@ function closeCategoryDropDown() {
 }
 
 
+
+
+
 /**
- * Removes focus from the subtask input and hides the real input field.
+ * Show addNewSubtaskButtons / Hide createNewSubtaskButton
+ * @function
+ */
+function openSubTaskInput() {
+    let createNewSubtaskButton = document.getElementById('createNewSubtaskButton');
+    let addNewSubtaskButtons = document.getElementById('addNewSubtaskButtons');
+    let input = document.getElementById('newSub');
+
+    createNewSubtaskButton.classList.add('d-none');
+    addNewSubtaskButtons.classList.remove('d-none');
+    input.focus();
+}
+
+/**
+ * Hide addNewSubtaskButtons / Show createNewSubtaskButton
  * @function
  */
 function closeSubTaskInput() {
     let createNewSubtaskButton = document.getElementById('createNewSubtaskButton');
     let addNewSubtaskButtons = document.getElementById('addNewSubtaskButtons');
+    let input = document.getElementById('newSub');
 
     createNewSubtaskButton.classList.remove('d-none');
     addNewSubtaskButtons.classList.add('d-none');
+    input.blur();
 }
 
 
@@ -157,7 +176,7 @@ function resetCheckBoxArrow() {
         checkbox.checked = false;
     });
 
-    if (arrow.src === "./assets/img/arrow_up.svg") {
+    if (arrow.src === "./assets/img/arrow_drop_down_up.svg") {
         arrow.src = "./assets/img/arrow_drop_down.svg";
     }
     document.getElementById('checkBoxes').classList.remove('d-block');
@@ -468,5 +487,4 @@ function checkSubInputValue(newSub) {
     setTimeout(function () {
         newSub.classList.remove('brd-red');
     }, 3000);
-    toggleSubTaskInput();
 }

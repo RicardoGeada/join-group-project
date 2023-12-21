@@ -879,7 +879,7 @@ input::-webkit-calendar-picker-indicator {
 
 .input-date-img {
   position: absolute;
-  right: 16px;
+  right: 21px;
   pointer-events: none;
   background-color: var(--color-white);
 }
@@ -982,6 +982,7 @@ input::-webkit-calendar-picker-indicator {
 .btnSection {
   width: 100% !important;
 }
+
 
 
 
