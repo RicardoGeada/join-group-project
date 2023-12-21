@@ -25,14 +25,16 @@ function renderContactHTML(index, contact) {
     const contactClass = contact.userState === '(You)' ? 'currentContact' : '';
 
     return `
-      <div id="contact${index}" class="singleContact option item brd-r10 ${contactClass}" onclick="addedContact(${index})">
+      <button type="button" id="contact${index}" class="singleContact option item brd-r10 ${contactClass}" onclick="addedContact(${index})">
         <div class="singleContactInitialName">
           <div class="font-white profile-badge bc-${contact['badge-color']} brd-white">${contact['initials']}</div>
-          <p>${contact['name']}</p>
-          <div>${checkUserState(sortedContacts[index]['userid'])}</div>
+          <div class="contact-text">
+            <p class="contact-name" >${contact['name']}</p>
+            <div class="contact-user-state" >${checkUserState(sortedContacts[index]['userid'])}</div>
+          </div>
         </div>
         <img id="check${index}" src="./assets/img/check_button_unchecked.svg">
-      </div>`;
+      </button>`;
 }
 
 

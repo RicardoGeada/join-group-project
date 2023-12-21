@@ -173,6 +173,14 @@
     }
 }
 
+@media (max-width: 400px) {
+    
+    .contact-user-state {
+      font-size: 12px;
+    }
+  }
+
+
 @media (max-height: 820px) {
     .listedSubTasks {
         height: 64px !important;

@@ -328,35 +328,35 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                 <div class="popup-task-edit-info-container" onclick="stopPropagation(event)">
                     <div class="popup-task-edit-info-headline">Category</div>
                     <div class="input-field-container category-container">
-                      <div id="selected-category" style="width: 100%;" onclick="toggleCategoryList(),stopPropagation(event)">${task['category']}</div>
-                      <button id="category-dropdown-button" class="icon-button" onclick="toggleCategoryList(),stopPropagation(event)" type="button">
+                      <div id="selected-category" style="width: 100%;" onclick="toggleCategoryList(),closeContactList(${taskID}),stopPropagation(event)">${task['category']}</div>
+                      <button id="category-dropdown-button" class="icon-button" onclick="toggleCategoryList(),closeContactList(${taskID}),stopPropagation(event)" type="button">
                         <img id="categoryArrow" src="./assets/img/arrow_drop_down.svg" alt="" >
                       </button>
                     </div>
                     <div id="category-list-container" class="category-list-container d-none">
-                        <div class="task-category-option" onclick="selectCategoryOption(this)">Technical Task</div>             
-                        <div class="task-category-option" onclick="selectCategoryOption(this)">User Story</div>             
+                        <button type="button" class="task-category-option" onclick="selectCategoryOption(this)">Technical Task</button>             
+                        <button type="button" class="task-category-option" onclick="selectCategoryOption(this)">User Story</button>             
                     </div>
                 </div>
                 <!-- Title -->
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Title</div>
                     <div class="input-field-container"  onclick="setFocusOnInput('input-title')">
-                        <input id="input-title" type="text" value="${task['title']}" maxlength="50" required>
+                        <input id="input-title" type="text" value="${task['title']}" maxlength="50" required onfocus="closeCategoryList(),closeContactList(${taskID})">
                     </div>
                 </div>
                 <!-- Description -->
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Description</div>
                     <div class="textarea-field-container"  onclick="setFocusOnInput('input-description')">
-                        <textarea id="input-description" type="text" required>${task['description']}</textarea>
+                        <textarea id="input-description" type="text" required onfocus="closeCategoryList(),closeContactList(${taskID})">${task['description']}</textarea>
                     </div>
                 </div>
                 <!-- Due Date -->
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Due Date</div>
                     <div class="input-field-container pos-rel"  onclick="setFocusOnInput('input-due-date')" >
-                        <input id="input-due-date" type="date" value="${task['due_date']}" min="${currentDate()}">
+                        <input id="input-due-date" type="date" value="${task['due_date']}" min="${currentDate()}" onfocus="closeCategoryList(),closeContactList(${taskID})">
                         <svg class="input-date-img" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_81758_1232" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                                 <rect width="24" height="24" fill="#D9D9D9"/>
@@ -371,14 +371,14 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Priority</div>
                     <div class="prio-buttons-container">
-                        <button id="prio-button-1" class="prio-button" onclick="selectPriority(1)" type="button">
+                        <button id="prio-button-1" class="prio-button" onclick="selectPriority(1)" type="button" onfocus="closeCategoryList(),closeContactList(${taskID})">
                             <div>Urgent</div>
                             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.00002 4.75476C9.19945 4.75443 9.39372 4.81633 9.55427 4.93137L17.1228 10.3653C17.2212 10.4361 17.3044 10.525 17.3675 10.627C17.4307 10.7291 17.4725 10.8422 17.4907 10.9599C17.5273 11.1977 17.4654 11.4399 17.3184 11.6333C17.1714 11.8266 16.9514 11.9553 16.7068 11.9909C16.4623 12.0266 16.2131 11.9664 16.0143 11.8234L9.00002 6.7925L1.98577 11.8234C1.8873 11.8942 1.77545 11.9454 1.65662 11.9742C1.53779 12.0029 1.4143 12.0086 1.2932 11.9909C1.1721 11.9733 1.05577 11.9326 0.950844 11.8712C0.845915 11.8099 0.754446 11.729 0.681662 11.6333C0.608878 11.5375 0.556201 11.4288 0.52664 11.3132C0.49708 11.1977 0.491215 11.0776 0.509379 10.9599C0.527545 10.8422 0.569382 10.7291 0.632508 10.627C0.695632 10.525 0.778805 10.4361 0.87728 10.3653L8.44577 4.93137C8.60631 4.81633 8.80059 4.75443 9.00002 4.75476Z" fill="#FF3D00"/>
                                 <path d="M9.00002 -0.000121266C9.19945 -0.000455511 9.39372 0.0614475 9.55427 0.176482L17.1228 5.61045C17.3216 5.75336 17.454 5.96724 17.4907 6.20502C17.5273 6.4428 17.4654 6.68501 17.3184 6.87837C17.1714 7.07173 16.9514 7.20039 16.7068 7.23606C16.4623 7.27173 16.2131 7.21147 16.0143 7.06856L9.00002 2.03761L1.98577 7.06856C1.78689 7.21147 1.53777 7.27173 1.2932 7.23606C1.04863 7.20039 0.828657 7.07173 0.681662 6.87837C0.534667 6.68501 0.472695 6.4428 0.509379 6.20502C0.546065 5.96723 0.678402 5.75336 0.87728 5.61044L8.44577 0.176482C8.60631 0.0614474 8.80059 -0.000455546 9.00002 -0.000121266Z" fill="#FF3D00"/>
                             </svg>
                         </button>
-                        <button id="prio-button-2" class="prio-button" onclick="selectPriority(2)" type="button">
+                        <button id="prio-button-2" class="prio-button" onclick="selectPriority(2)" type="button" onfocus="closeCategoryList(),closeContactList(${taskID})">
                             <div>Medium</div>
                             <svg width="18" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_81273_4781)">
@@ -392,7 +392,7 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                                 </defs>
                             </svg>    
                         </button>
-                        <button id="prio-button-3" class="prio-button" onclick="selectPriority(3)" type="button">
+                        <button id="prio-button-3" class="prio-button" onclick="selectPriority(3)" type="button" onfocus="closeCategoryList(),closeContactList(${taskID})">
                             <div>Low</div>
                             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_81273_4809)">
@@ -412,7 +412,7 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                 <div class="popup-task-edit-info-container" onclick="stopPropagation(event)">
                     <div class="popup-task-edit-info-headline">Assigned to</div>
                     <div class="input-field-container assigned-to-container" onclick="setFocusOnInput('input-assigned-to')">
-                      <input id="input-assigned-to" type="text" placeholder="Select contacts to assign" onkeyup="searchContactsEditTask()" onfocus="openContactList(${taskID})">
+                      <input id="input-assigned-to" type="text" placeholder="Select contacts to assign" onkeyup="searchContactsEditTask()" onfocus="openContactList(${taskID}), closeCategoryList()">
                       <button class="icon-button" onclick="toggleContactList(${taskID}),stopPropagation(event)" type="button">
                         <img id="contactsArrow" src="./assets/img/arrow_drop_down.svg" alt="" >
                       </button>
@@ -432,7 +432,7 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
                 <div class="popup-task-edit-info-container">
                     <div class="popup-task-edit-info-headline">Subtasks</div>
                     <div class="input-field-container"  onclick="setFocusOnInput('input-subtasks')">
-                        <input id="input-subtasks" type="text" placeholder="Add new subtask" onkeydown="addNewSubtaskWithEnter(event)">
+                        <input id="input-subtasks" type="text" placeholder="Add new subtask" onkeydown="addNewSubtaskWithEnter(event)" onfocus="closeCategoryList(),closeContactList(${taskID})">
                         <button class="createNewSubtask-button icon-button" type="button">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 1.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -476,7 +476,7 @@ function generatePopupEditTaskContainerHTML(task,taskID) {
 
 function generateContactListItemHTML(contact,i) {
     return /*html*/`
-    <li id="contact-${contact['id']}" class="assigned-to-contacts-list-item ${addCSSClass_assigned(contact['id'])}" onclick="toggleAssignment(${contact['id']},'contact-${i}-checkbox')">
+    <button type="button" id="contact-${contact['id']}" class="assigned-to-contacts-list-item ${addCSSClass_assigned(contact['id'])}" onclick="toggleAssignment(${contact['id']},'contact-${i}-checkbox')">
       <div class="assigned-to-contact">
         <div class="profile-badge bc-${contact['badge-color']} width-40px border-2px">${contact['initials']}</div>
         <div class="contact-text">
@@ -485,7 +485,7 @@ function generateContactListItemHTML(contact,i) {
         </div>
       </div>
       <img id="contact-${i}-checkbox" src="${loadCheckButtonImg(contact['id'])}" alt="">
-    </li>
+    </button>
   `;
 }
 

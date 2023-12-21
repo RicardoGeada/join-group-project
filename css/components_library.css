@@ -110,9 +110,11 @@ button {
   padding: 4px 18px;
   border-radius: 8px;
   font-size: 16px;
+  outline: none;
 }
 
-.btn-filled:hover {
+.btn-filled:hover,
+.btn-filled:focus {
   background-color: var(--color-blue);
 }
 
@@ -187,21 +189,7 @@ button {
     background-color: var(--color-darker-blue);
 }
 
-/* Icon Buttons */
 
-.taskData .icon-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  min-width: 24px;
-  max-width: 24px;
-}
-
-.taskData .icon-button:hover {
-  background-color: var(--color-lightest-grey);
-  border-radius: 100%;
-}
 
 
 /* Input Field Styling */

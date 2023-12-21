@@ -75,23 +75,6 @@ function setFocus(inputId) {
 
 
 /**
- * Removes focus from unfocused input fields based on the provided input field ID.
- * @function
- * @param {string} inputField - The ID of the input field that should remain focused.
- */
-function toggleFocus(inputField) {
-    const elements = ['titleInput', 'descriptionInput', 'dateToday', 'categoryInput', 'subTaskInputCover', 'searchContact'];
-
-    elements.forEach(elementId => {
-        const element = document.getElementById(elementId);
-        if (elementId !== inputField) {
-            element.classList.remove('brd-focus');
-        }
-    });
-}
-
-
-/**
  * Closes the contacts dropdown menu and removes focus from the search input field.
  * @function
  */
@@ -123,11 +106,11 @@ function closeCategoryDropDown() {
  * @function
  */
 function closeSubTaskInput() {
-    let inputCover = document.getElementById('subTaskInputCover');
-    let realInput = document.getElementById('realSubInput');
+    let createNewSubtaskButton = document.getElementById('createNewSubtaskButton');
+    let addNewSubtaskButtons = document.getElementById('addNewSubtaskButtons');
 
-    inputCover.classList.remove('d-none');
-    realInput.classList.add('d-none');
+    createNewSubtaskButton.classList.remove('d-none');
+    addNewSubtaskButtons.classList.add('d-none');
 }
 
 
@@ -136,11 +119,11 @@ function closeSubTaskInput() {
  * @function
  */
 function toggleSubTaskInput() {
-    let inputCover = document.getElementById('subTaskInputCover');
-    let realInput = document.getElementById('realSubInput');
+    let createNewSubtaskButton = document.getElementById('createNewSubtaskButton');
+    let addNewSubtaskButtons = document.getElementById('addNewSubtaskButtons');
 
-    inputCover.classList.toggle('d-none');
-    realInput.classList.toggle('d-none');
+    createNewSubtaskButton.classList.toggle('d-none');
+    addNewSubtaskButtons.classList.toggle('d-none');
 }
 
 
@@ -478,12 +461,12 @@ function resetPrioAlert(urgent, medium, low) {
 /**
  * Checks if the subtask input is empty, adds a red border, and toggles the input.
  * @function
- * @param {HTMLElement} subInputCover - The cover element for the subtask input.
+ * @param {HTMLElement} newSub - The cover element for the subtask input.
  */
-function checkSubInputValue(subInputCover) {
-    subInputCover.classList.add('brd-red');
+function checkSubInputValue(newSub) {
+    newSub.classList.add('brd-red');
     setTimeout(function () {
-        subInputCover.classList.remove('brd-red');
+        newSub.classList.remove('brd-red');
     }, 3000);
     toggleSubTaskInput();
 }

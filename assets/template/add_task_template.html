@@ -22,23 +22,23 @@
                     <h4 class="title">Title<p style="color:#ff3d00">*</p>
                     </h4>
                     <input class="titleInput brd-r10 item" type="text" placeholder="Enter a title" id="titleInput"
-                        onclick="resetInputAlert('titleInput'), setFocus('titleInput'), closeSubTaskInput(), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('titleInput'), stopPropagation(event)" maxlength="50" autocomplete="off" required
+                        onclick="resetInputAlert('titleInput'), setFocus('titleInput'), closeSubTaskInput(), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()" maxlength="50" autocomplete="off" required
                         title="Please enter a title.">
                 </div>
                 <div class="description h4-gap">
                     <h4>Description<p style="color:#ff3d00">*</p>
                     </h4>
                     <textarea class="descriptionInput brd-r10 item" name="" id="descriptionInput"
-                        placeholder="Enter a Description" onclick="resetInputAlert('descriptionInput'), setFocus('descriptionInput'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('descriptionInput'), stopPropagation(event)" required
+                        placeholder="Enter a Description" onclick="resetInputAlert('descriptionInput'), setFocus('descriptionInput'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()" required
                         title="Please enter a description."></textarea>
                 </div>
                 <div class="assignedTo">
                     <h4>Assigned to</h4>
                     <div class="selectContacts">
-                        <div id="searchContact" class="categorySelector index brd-r10" onclick="showContacts(), closeCategoryDropDown(), closeSubTaskInput(), toggleFocus('searchContact'),stopPropagation(event)">
+                        <div id="searchContact" class="categorySelector index brd-r10" onclick="showContacts(), closeCategoryDropDown(), closeSubTaskInput(),stopPropagation(event)">
                             <input type="text" class="brd-transparent width-100" name="" id="searchContactInput"
                                 placeholder="Select contacts to assign"
-                                onkeyup="searchContacts()">
+                                onkeyup="searchContacts()" onfocus="showContacts(), closeCategoryDropDown(), closeSubTaskInput()" >
                             <button type="button" class="icon-button" onclick="showContacts(), stopPropagation(event)">
                                 <img id="contactsArrow" class="item" src="./assets/img/arrow_drop_down.svg">
                             </button>
@@ -67,19 +67,25 @@
                         </h4>
                         <div id="btnSection" class="btnSection width-396 brd-r10"
                             onclick="resetPrioAlert('urgentBtn','mediumBtn','lowBtn')">
-                            <a id="urgentBtn" class="item brd-r10" onclick="selectPrio(1)">Urgent <img id="urgent"
-                                    src="./assets/img/capa2.svg" alt=""></a>
-                            <a id="mediumBtn" class="item brd-r10" onclick="selectPrio(2)">Medium <img id="medium"
-                                    src="./assets/img/prio-media.svg" alt=""></a>
-                            <a id="lowBtn" class="item brd-r10" onclick="selectPrio(3)">Low <img id="low"
-                                    src="./assets/img/prio-baja.svg" alt=""></a>
+                            <button type="button" id="urgentBtn" class="item brd-r10" onclick="selectPrio(1)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
+                                Urgent 
+                                <img id="urgent" src="./assets/img/capa2.svg" alt="">
+                            </button>
+                            <button type="button" id="mediumBtn" class="item brd-r10" onclick="selectPrio(2)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
+                                Medium 
+                                <img id="medium" src="./assets/img/prio-media.svg" alt="">
+                            </button>
+                            <button type="button" id="lowBtn" class="item brd-r10" onclick="selectPrio(3)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()">
+                                Low 
+                                <img id="low" src="./assets/img/prio-baja.svg" alt="">
+                            </button>
                         </div>
                     </div>
                     <div class="h4-gap">
                         <h4>Due date<p style="color:#ff3d00">*</p>
                         </h4>
                         <div class="input-add-task-due-date">
-                            <input onclick="today(); resetInputAlert('dateToday'), setFocus('dateToday'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('dateToday'), stopPropagation(event)" class="date item brd-r10" type="date"
+                            <input onclick="today(); resetInputAlert('dateToday'), setFocus('dateToday'), closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput(), stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown(), closeSubTaskInput()" class="date item brd-r10" type="date"
                                 id="dateToday" required>
                             <svg class="input-date-img" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -101,15 +107,15 @@
                         <div class="custom-select" onclick="stopPropagation(event)">
                             <div class="categorySelect">
                                 <div id="categoryInput" class="categorySelector brd-r10 item"
-                                    onclick="selectCategory(); resetInputAlert('categoryInput'), setFocus('categoryInput'), closeAssignedToDropDown(), closeSubTaskInput(), toggleFocus('categoryInput'), stopPropagation(event)">
+                                    onclick="selectCategory(); resetInputAlert('categoryInput'), setFocus('categoryInput'), closeAssignedToDropDown(), closeSubTaskInput(), stopPropagation(event)">
                                     <p id="chosenCategory">Select task Category</p>
-                                    <button type="button" class="icon-button" onclick="selectCategory(),stopPropagation(event)">
+                                    <button type="button" class="icon-button" onclick="selectCategory(),stopPropagation(event)"  onfocus="selectCategory(), closeAssignedToDropDown(), closeSubTaskInput()">
                                         <img id="categoryArrow" src="./assets/img/arrow_drop_down.svg" alt="">
                                     </button>
                                 </div>
                                 <div id="allOptions" class="selector brd-r10 d-none">
-                                    <div class="option item brd-r10" onclick="selectOption(this)">Technical Task</div>
-                                    <div class="option item brd-r10" onclick="selectOption(this)">User Story</div>
+                                    <button type="button" class="option item brd-r10" onclick="selectOption(this)">Technical Task</button>
+                                    <button type="button" class="option item brd-r10" onclick="selectOption(this)">User Story</button>
                                 </div>
                             </div>
                         </div>
@@ -117,22 +123,21 @@
                     
                     <div class="subTasks h4-gap">
                         <h4>Subtasks</h4>
-                        <div id="subTaskInputCover" class="item brd-r10" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), toggleFocus('subTaskInputCover'), stopPropagation(event), toggleSubTaskInput()">
-                            <p>Add new subtask</p>
-                            <button type="button" class="icon-button" onclick="closeCategoryDropdown()">
-                                <img src="./assets/img/add.svg" alt="">
-                            </button>
-                        </div>
-                        <div id="realSubInput" class="subTaskInput d-none">
-                            <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)">
+                        <div id="realSubInput" class="subTaskInput" onclick="closeCategoryDropDown(), closeAssignedToDropDown(), stopPropagation(event), toggleSubTaskInput()">
+                            <input id="newSub" type="text" placeholder="Add new subtask" onkeydown="enterKeyDownCreateSub(event)" onclick="stopPropagation(event)" onfocus="closeCategoryDropDown(), closeAssignedToDropDown()">
                             <div class="subInputButton">
-                                <button type="button" class="icon-button" onclick="toggleSubTaskInput()">
-                                    <img class="item" src="./assets/img/close.svg"  alt="">
+                                <button id="createNewSubtaskButton" type="button" class="icon-button">
+                                    <img src="./assets/img/add.svg" alt="">
                                 </button>
-                                <div class="subBorder"></div>
-                                <button type="button" class="icon-button" onclick="createSubTask()">
-                                    <img class="item" src="./assets/img/input_check.svg" alt="">
-                                </button>        
+                                <div id="addNewSubtaskButtons" class="d-none">
+                                    <button type="button" class="icon-button" onclick="discardNewSubtask(), stopPropagation(event)">
+                                        <img class="item" src="./assets/img/close.svg"  alt="">
+                                    </button>
+                                    <div class="subBorder"></div>
+                                    <button type="button" class="icon-button" onclick="createSubTask()">
+                                        <img class="item" src="./assets/img/input_check.svg" alt="">
+                                    </button>  
+                                </div>   
                             </div>
                         </div>
                         <div id="subTaskList" class="listedSubTasks">

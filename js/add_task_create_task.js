@@ -291,10 +291,10 @@ function addedContact(index) {
 function createSubTask() {
     let newSubTask = document.getElementById('newSub');
     let showSubs = document.getElementById('subTaskList');
-    let subInputCover = document.getElementById('subTaskInputCover');
+    let realSubInput = document.getElementById('realSubInput');
 
     if (newSubTask.value === '') {
-        checkSubInputValue(subInputCover);
+        checkSubInputValue(realSubInput);
     } else {
         addedSubTasks.push(
             {
@@ -312,6 +312,13 @@ function createSubTask() {
 
         toggleSubTaskInput();
     }
+}
+
+
+function discardNewSubtask() {
+    let newSubTask = document.getElementById('newSub');
+    newSubTask.value = '';
+    toggleSubTaskInput();
 }
 
 

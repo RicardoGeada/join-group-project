@@ -626,11 +626,15 @@ input::-webkit-calendar-picker-indicator {
 .task-category-option {
   height: 48px;
   font-size: 16px;
-  padding: 12px 16px;
+  padding: 12px 21px;
   border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  outline: none;
 }
 
-.task-category-option:hover {
+.task-category-option:hover, 
+.task-category-option:focus {
   background-color: var(--color-lightest-grey);
 }
 
@@ -656,8 +660,10 @@ input::-webkit-calendar-picker-indicator {
   font-size: 16px;
 }
 
-.prio-button:hover {
+.prio-button:hover,
+.prio-button:focus {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  outline: none;
 }
 
 .selected-prio {
@@ -750,7 +756,7 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .assigned-to-contacts-list-item {
-  /* width: 100%; */
+  width: 100%;
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -759,14 +765,17 @@ input::-webkit-calendar-picker-indicator {
   min-height: 56px;
   padding: 0 16px;
   border-radius: 10px;
+  outline: none;
 }
 
-.assigned-to-contacts-list-item:hover {
+.assigned-to-contacts-list-item:hover,
+.assigned-to-contacts-list-item:focus {
   background-color: var(--color-lightest-grey);
   color: black;
 }
 
-.assigned-to-contacts-list-item:hover img {
+.assigned-to-contacts-list-item:hover img,
+.assigned-to-contacts-list-item:focus img {
   filter: brightness(0);
 }
 
@@ -783,6 +792,9 @@ input::-webkit-calendar-picker-indicator {
   display: flex;
   gap: 16px;
   align-items: center;
+  width: 100%;
+  font-size: 16px;
+  text-align: left;
 }
 
 .category-list-container,
@@ -882,9 +894,11 @@ input::-webkit-calendar-picker-indicator {
   min-width: 24px;
 }
 
-.icon-button:hover {
+.icon-button:hover,
+.icon-button:focus {
   background-color: var(--color-lightest-grey);
   border-radius: 100%;
+  outline: none;
 }
 
 /* popup-add-task-container */

@@ -118,10 +118,6 @@ textarea {
     border: 1px solid #ff3d00 !important;
 }
 
-.brd-focus {
-    border: 1px solid #29abe2 !important;
-}
-
 .brd-white {
     border: 2px solid white !important;
 }
@@ -271,12 +267,20 @@ input:focus {
     outline: none !important;
 }
 
+.titleInput:focus,
+.descriptionInput:focus,
+.date:focus,
+.categorySelector:focus-within,
+.subTaskInput:focus-within {
+    border: 1px solid #29abe2;
+}
+
 .prio {
     display: flex;
     justify-content: space-between;
 }
 
-.prio a {
+.prio button {
     background-color: #FFFFFF;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
     outline: none;
@@ -290,7 +294,8 @@ input:focus {
     height: 41px;
 }
 
-.prio a:hover {
+.prio button:hover,
+.prio button:focus {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -353,35 +358,26 @@ select option {
     box-shadow: none !important;
 }
 
-#subTaskInputCover {
+#addNewSubtaskButtons {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: #D1D1D1;
-    font-size: 16px;
-    height: 40px;
-    padding: 0 21px;
-    background-color: white;
-    border: 1px solid #D1D1D1;
+    gap: 4px;
 }
 
 .subTaskInput {
     height: 40px;
     width: 100%;
     display: flex;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .subTaskInput input {
     width: 100%;
-    margin-right: -6px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 21px;
     font-family: 'Inter';
-    height: 100%;
-    border: 1px solid #29abe2;
-    border-right: transparent !important;
+    border: none;
 }
 
 .subInputButton {
@@ -390,13 +386,7 @@ select option {
     align-items: center;
     padding-right: 21px;
     gap: 4px;
-    width: 15%;
-    height: 42px;
-    border: 1px solid #29abe2;
-    border-left: transparent !important;
     background-color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .selectedSubInput {
@@ -504,10 +494,16 @@ select option {
 }
 
 .option {
+    width: 100%;
     padding: 12px 21px;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    align-items: center ;
 }
 
-.option:hover {
+.option:hover,
+.option:focus {
     background-color:#F6F7F8;
 }
 
@@ -579,7 +575,6 @@ select option {
 .singleContact {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
 }
 
 .singleContact:hover {
@@ -636,8 +631,15 @@ select option {
     background-color: #2a3647;
     color: white;
     font-size: 20px;
-    width: 95%;
-    height: 40px;
+    width: 100%;
+    margin: 4px 21px;
+    height: 48px;
+}
+
+.addNewContactBtn:hover,
+.addNewContactBtn:focus {
+    background-color: #29abe2;
+    outline: none;
 }
 
 .listedSubTasks {
@@ -731,3 +733,21 @@ select option {
 #popup-addcon div {
     box-sizing: border-box;
 }
+
+/* Icon Buttons */
+
+.taskData .icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    min-width: 24px;
+    max-width: 24px;
+  }
+  
+  .taskData .icon-button:hover, 
+  .taskData .icon-button:focus {
+    background-color: var(--color-lightest-grey);
+    border-radius: 100%;
+    outline: none;
+  }
