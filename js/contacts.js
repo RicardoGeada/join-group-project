@@ -288,10 +288,15 @@ function renderSaveEditContact(id) {
 async function deleteContact(id) {
     let index = idToIndex(id, contacts);
     let userId = contacts[index].userid;
-    if(isNotAUser || isCurrentUser(userId)) {
+    if(isNotAUser) {
         msgBox();
         closeContact();
         document.getElementById("popup-editcon").classList.remove("inview");
+    } else if (isCurrentUser(userId)) {
+        msgBox('Your account will be deleted.');
+        setTimeout(() => deleteNow(id, index, userId), 1000);
+        localStorage.removeItem('rememberPassword');
+        localStorage.removeItem('rememberEmail');
     } else {
         deleteNow(id, index, userId);
     }
