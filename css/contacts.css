@@ -1250,6 +1250,10 @@ div, nav, main, span, ::after {
     .contact-add-mainbox span {
         display: none;
     }
+
+    .close-x img {
+        filter: brightness(0) invert();
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1199px) {

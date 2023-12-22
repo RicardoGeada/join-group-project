@@ -26,7 +26,6 @@ async function initAddTask() {
     await loadTasksFromStorage();
     sortContactsUserFirst(contacts);
     renderContacts();
-
 }
 
 
@@ -41,6 +40,7 @@ async function renderContacts() {
     for (let i = 0; i < sortedContacts.length; i++) {
         const contact = sortedContacts[i];
         assignedToContact.innerHTML += renderContactHTML(i, contact);
+        if (addedContacts.includes(contact.id)) addedContact(i);
     }
 }
 

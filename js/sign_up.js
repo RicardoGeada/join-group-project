@@ -159,7 +159,7 @@ function areFieldsValid(fields) {
  * @param {fields}
  */
 async function register(fields) {
-  await loadUsers();
+  // await loadUsersFromStorage();
 
   let lastContactId = await loadLastContactId();
   lastContactId++;
@@ -263,7 +263,7 @@ async function checkEmailExists() {
     return;
   }
 
-  await loadUsers();
+  // await loadUsersFromStorage();
 
   const emailExists = users.some((user) => user.email === email);
 

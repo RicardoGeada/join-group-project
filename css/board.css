@@ -624,7 +624,6 @@ input::-webkit-calendar-picker-indicator {
 /* Category */
 
 .task-category-option {
-  height: 48px;
   font-size: 16px;
   padding: 12px 21px;
   border-radius: 10px;

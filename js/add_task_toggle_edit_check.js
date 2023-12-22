@@ -406,9 +406,11 @@ function checkedCheckBox(selectedContact, checked, src, id, badge, index) {
     selectedContact.classList.add('bg-blue', 'font-white');
     checked.src = './assets/img/check_button_checked.svg';
     checked.classList.add('selectedSvg');
-    addedContacts.push(id);
-    badges.push(badge);
-    addedContactInitial.push(contacts[index]['initials']);
+    if (!addedContacts.includes(id)) {
+        addedContacts.push(id);
+        badges.push(badge);
+        addedContactInitial.push(contacts[index]['initials']);
+    }
     document.getElementById('searchContactInput').value = "";
 }
 

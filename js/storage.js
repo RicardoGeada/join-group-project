@@ -119,6 +119,7 @@ async function userAndContacts() {
   loadContactsFromStorage();
   loadUsersFromStorage();
   loadCurrentUserFromStorage();
+  loadLastContactId();
   isLoaded = true;
 }
 

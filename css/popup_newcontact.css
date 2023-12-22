@@ -403,3 +403,9 @@
         padding: 48px 48px 48px 205px;
     }
 }
+
+@media (max-width: 999px) {
+    .close-x img {
+        filter: brightness(0) invert();
+    }
+}

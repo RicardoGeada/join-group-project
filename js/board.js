@@ -337,7 +337,7 @@ function closeAddTaskPopup() {
 /* ============================== */
 
 async function loadContactsWithAddedContact(taskID) {
-  sortContactsOnBoard(contacts);
+  sortContactsUserFirst(contacts);
   openContactList(taskID);
 }
 
