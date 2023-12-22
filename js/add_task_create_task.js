@@ -19,7 +19,6 @@ function getSelectedPrio() {
     } else {
         selectedPriority = 0;
     };
-
     return selectedPriority;
 }
 

@@ -26,6 +26,7 @@ async function initAddTask() {
     await loadTasksFromStorage();
     sortContactsUserFirst(contacts);
     renderContacts();
+    selectPrio(2);
 }
 
 
