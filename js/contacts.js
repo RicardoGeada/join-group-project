@@ -288,7 +288,7 @@ function renderSaveEditContact(id) {
 async function deleteContact(id) {
     let index = idToIndex(id, contacts);
     let userId = contacts[index].userid;
-    if(isNotAUser) {
+    if(isNotAUser || loggedInUser == 'Guest') {
         msgBox();
         closeContact();
         document.getElementById("popup-editcon").classList.remove("inview");
