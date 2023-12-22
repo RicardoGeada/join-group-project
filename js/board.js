@@ -352,3 +352,14 @@ function stopPropagation(event) {
 }
 
 
+// INPUT FOCUS
+/**
+ * sets the focus on the input, when clicking on the container
+ * @param {string} id - id of the input e.g. 'input-title' 
+ */
+function setFocusOnInput(id) {
+  let input = document.getElementById(id);
+  if (document.activeElement !== input) input.focus();
+}
+
+

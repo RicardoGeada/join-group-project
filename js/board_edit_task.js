@@ -1,8 +1,6 @@
 /* =================================== */
 /* ===== EDIT TASK - POP UP VIEW ===== */
 /* =================================== */
-
-
 /**
  * open task edit
  * @param {number} taskID - id of the current task
@@ -18,23 +16,9 @@ function editTask(taskID) {
     renderAssignedUserBadgesEditTask(taskID);
     renderSubtasksInEditTask(taskID);
 }
-  
-
-
-// INPUT FOCUS
-
-/**
- * sets the focus on the input, when clicking on the container
- * @param {string} id - id of the input e.g. 'input-title' 
- */
-function setFocusOnInput(id) {
-  let input = document.getElementById(id);
-  if (document.activeElement !== input) input.focus();
-}
 
 
 // CATEGORY
-
 /**
  * open the category list
  */
@@ -75,11 +59,8 @@ function toggleCategoryList() {
  */
 function toggleCategoryDropdownArrow() {
   let img = document.getElementById('categoryArrow');
-  if (categoryOpen) {
-    img.src = './assets/img/arrow_drop_down_up.svg';
-  } else {
-    img.src = './assets/img/arrow_drop_down.svg'
-  }
+  if (categoryOpen) img.src = './assets/img/arrow_drop_down_up.svg';
+  else img.src = './assets/img/arrow_drop_down.svg';
 }
 
 
@@ -107,7 +88,6 @@ function getCategoryColor() {
 }
 
 
-
 // DATE
 /**
  * get current date to set as minimum input value
@@ -120,7 +100,6 @@ function currentDate() {
 
 
 // PRIO BUTTONS
-
 /**
  * select priority
  * @param {number} prio - number 1,2 or 3
@@ -146,9 +125,7 @@ function removePrioSelection() {
 }
 
 
-
 // ASSIGNED TO
-
 /**
  * open the contact list
  * @param {number} taskID - id of the current task
@@ -189,11 +166,8 @@ function toggleContactList(taskID) {
  */
 function toggleContactsDropdownArrow() {
   let img = document.getElementById('contactsArrow');
-  if (contactsOpen) {
-    img.src = './assets/img/arrow_drop_down_up.svg';
-  } else {
-    img.src = './assets/img/arrow_drop_down.svg'
-  }
+  if (contactsOpen) img.src = './assets/img/arrow_drop_down_up.svg';
+  else img.src = './assets/img/arrow_drop_down.svg';
 }
 
 
@@ -211,6 +185,7 @@ function loadContactsIntoDropdown() {
   }
 }
 
+
 /**
  * load the checked / unchecked svg if the contact is assigned to the task
  * @param {number} contactID - id of the current contact
@@ -218,11 +193,8 @@ function loadContactsIntoDropdown() {
  */
 function loadCheckButtonImg(contactID) {
   let isAssigned = currentTask['assigned_to'].includes(contactID);
-  if (isAssigned) {
-    return './assets/img/check_button_checked.svg';
-  } else {
-    return './assets/img/check_button_unchecked.svg';
-  }
+  if (isAssigned) return './assets/img/check_button_checked.svg';
+  else  return './assets/img/check_button_unchecked.svg';
 }
 
 
@@ -233,11 +205,8 @@ function loadCheckButtonImg(contactID) {
  */
 function addCSSClass_assigned(contactID) {
   let isAssigned = currentTask['assigned_to'].includes(contactID);
-  if (isAssigned) {
-    return 'assigned';
-  } else {
-    return '';
-  }
+  if (isAssigned) return 'assigned'
+  else return '';
 }
 
 
@@ -247,13 +216,9 @@ function addCSSClass_assigned(contactID) {
  * @returns string / user type declaration
  */
 function checkContactUserState(userid) {
-  if (userid == currentUser['id']) {
-    return '(You)'
-  } else if (userid < 0) {
-    return '';
-  } else {
-    return '(User)';
-  }
+  if (userid == currentUser['id']) return '(You)'
+  else if (userid < 0) return '';
+  else return '(User)';
 }
 
 
@@ -308,9 +273,7 @@ function searchContactsEditTask() {
 }
 
 
-
 // SUBTASKS
-
 /**
  * render all subtasks in edit task view
  */
@@ -323,7 +286,6 @@ function renderSubtasksInEditTask() {
     container.innerHTML += generateSubtaskInEditPopupHTML(subtask,i);
   }
 }
-
 
 
 /**
@@ -348,7 +310,7 @@ function editSubtaskWithEnter(event,subtaskIndex) {
   if (event.key === 'Enter') {
     event.preventDefault();
     saveSubtask(subtaskIndex);
-}
+  }
 }
 
 
@@ -365,7 +327,6 @@ function saveSubtask(subtaskIndex) {
   } else {
     deleteSubtask(subtaskIndex);
   }
-
 }
 
 
@@ -377,7 +338,6 @@ function deleteSubtask(subtaskIndex) {
   currentTask['subtasks'].splice(subtaskIndex,1);
   renderSubtasksInEditTask();
 }
-
 
 
 /**
@@ -424,9 +384,7 @@ function addNewSubtaskWithEnter(event) {
 }
 
 
-
 // ACCEPT EDIT
-
 /**
  * accept the edit of the task
  * @param {number} taskID - id of the current task
@@ -449,6 +407,7 @@ async function acceptEdit(taskID) {
   }
 }
 
+
 /**
  * save the edited task
  * @param {JSON} task - the task the user opened
@@ -465,45 +424,3 @@ async function saveEditedTask(task,currentTask) {
   task['subtasks'] = currentTask['subtasks'];
   await setItem('tasks', JSON.stringify(tasks));
 }
-
-
-/* =========================== */
-/* ===== FORM VALIDATION ===== */
-/* =========================== */
-
-
-/**
- * mark input container red, when not valid iput
- */
-document.addEventListener('input', function() {
-  let editPopup = document.getElementById('popup-task-edit-container');
-  if (editPopup) {
-    let inputs = editPopup.getElementsByTagName('input');
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
-      if (input.validity.valid) {
-        input.parentElement.classList.remove('invalid');
-      } else {
-        input.parentElement.classList.add('invalid');
-      }
-    }
-  }
-})
-
-/**
- * mark textarea container red, when not valid iput
- */
-document.addEventListener('input', function() {
-  let editPopup = document.getElementById('popup-task-edit-container');
-  if (editPopup) {
-    let inputs = editPopup.getElementsByTagName('input');
-    for (let i = 0; i < inputs.length; i++) {
-      const input = inputs[i];
-      if (input.validity.valid) {
-        input.parentElement.classList.remove('invalid');
-      } else {
-        input.parentElement.classList.add('invalid');
-      }
-    }
-  }
-})

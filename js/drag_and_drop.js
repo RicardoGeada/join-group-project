@@ -16,7 +16,6 @@ let isScrolling = false;
 setInterval(dragScroll, 25); 
 
 
-
 /* ============================= */
 /* ===== DRAG & DROP MOUSE ===== */
 /* ============================= */
@@ -37,7 +36,6 @@ function startDragging(id,ev) {
     dragScrollEnabled = true; // for dragScroll
     createVisibleTaskClone(ev,task);  
 }
-
 
 
 /**
@@ -71,7 +69,6 @@ function createVisibleTaskClone(event,task) {
 }
 
 
-
 /**
  * function called ondragover task-section
  * - cancel the dafault action of a div for ondragenter and ondragover to allow ondrop
@@ -81,7 +78,6 @@ function createVisibleTaskClone(event,task) {
 function allowDrop(event) {
   event.preventDefault();
 }
-
 
 
 /**
@@ -104,7 +100,6 @@ async function moveTo(taskStateCategory) {
 }
 
 
-
 /**
  * function called ondrag of task-container
  * - let the visible clone follow the cursor
@@ -123,7 +118,6 @@ function drag(event) {
   }
   toggleDropIndication(event);
 }
-
 
 
 /**
@@ -145,7 +139,6 @@ function dragEnd() {
 }
 
 
-
 /**
  * show and hide task indication
  * 
@@ -163,7 +156,6 @@ function toggleDropIndication(event) {
     removeTaskDropIndication(currentDraggedOverContainer);
   };
 }
-
 
 
 /**
@@ -184,7 +176,6 @@ function createTaskDropIndication(id) {
 }
 
 
-
 /**
  * remove html for task drop indication
  * 
@@ -198,7 +189,6 @@ function removeTaskDropIndication(id) {
   };
   showNoTaskContainer(id);
 }
-
 
 
 /**
@@ -215,7 +205,6 @@ function hideNoTaskContainer(id) {
 }
 
 
-
 /**
  * remove display: none from no-task-container
  * 
@@ -228,7 +217,6 @@ function showNoTaskContainer(id) {
     notaskContainer.classList.remove('d-none');
   }
 }
-
 
 
 /* ============================= */
@@ -257,7 +245,6 @@ function touchStart(id,event){
 }
 
 
-
 /**
  * touchend for touchdrag
  * - reset timer and longtouch state
@@ -274,7 +261,6 @@ function touchEnd(event){
     onlongtouch = false;
   }
 }
-
 
 
 /**
@@ -299,7 +285,6 @@ function touchDrag(event) {
     toggleDropIndication(event);
   }
 }
-
 
 
 /**
@@ -331,7 +316,6 @@ function touchMoveTo(id) {
     moveTo(stateCatgory)
   }
 }
-
 
 
 /**
@@ -382,7 +366,6 @@ function checkIfDropIsInZone(dropContainer,event) {
 }
 
 
-
 /**
  * scroll in main container when touchDragging a task-container
  */
@@ -400,7 +383,6 @@ function dragScroll() {
     }
   }
 }
-
 
 
 // check if touchmove ("touchscroll") is active 
