@@ -142,7 +142,7 @@ function openContactList(taskID) {
 
 
 /**
- * close the conatact list
+ * close the contact list
  */
 function closeContactList() {
   contactsOpen = false;
