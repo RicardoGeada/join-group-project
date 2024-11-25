@@ -1,4 +1,21 @@
 /**
+ * Listener for Important Notice Popup
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("popup");
+  const closePopup = document.getElementById("closePopup");
+
+  // Show popup on page load
+  popup.style.display = "flex";
+
+  // Close popup when button is clicked
+  closePopup.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+});
+
+
+/**
  * Navigates back to the login page.
  */
 function backToLogin() {
@@ -367,30 +384,4 @@ function startCountdown(seconds) {
       window.location.href = "index.html";
     }
   }, 1000);
-}
-
-/**
- * Deletes all users from the server.
- */
-async function deleteAllUsers() {
-  users = [];
-  await setItem("users", JSON.stringify(users));
-}
-
-/**
- * The logged-in user identifier retrieved from local storage.
- * @type {number}
- */
-let loggedInUserID = +localStorage.getItem("loggedInUserID");
-
-/**
- * Initializes the logged-in user.
- */
-async function initLoggedInUser() {
-  await loadHeaderUsersFromStorage();
-  if (loggedInUserID != -2 && useridToIndex(loggedInUserID, users) == -1) {
-    userLogout();
-  } else {
-    renderHeaderUserName();
-  }
 }

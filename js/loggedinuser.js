@@ -1,7 +1,5 @@
 document.addEventListener('click', hideUserOptions);
 
-let loggedInUserID = +localStorage.getItem("loggedInUserID");
-let loggedInUser = localStorage.getItem("loggedInUser");
 let isNotAUser = true;
 
 
@@ -92,13 +90,15 @@ async function loadHeaderUsersFromStorage() {
  * Renders the user's initials into the badge.
  */
 async function renderHeaderUserName() {
-    let index = useridToIndex(loggedInUserID, users);
-    let obj = document.getElementById('user-name');
-    if(obj === null) {
-        window.location.reload();
-    } else {
-        loggedInUserID == -2 ? obj.innerHTML = 'G' : obj.innerHTML = users[index].initials;
-    }
+    const observer = new MutationObserver(() => {
+        let obj = document.getElementById('user-name');
+        if (obj) {
+            observer.disconnect(); // Beobachtung stoppen
+            let index = useridToIndex(loggedInUserID, users);
+            obj.innerHTML = loggedInUserID === -2 ? 'G' : users[index].initials;
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 }
 
 
